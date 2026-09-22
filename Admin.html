@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Customize — Portfolio Settings</title>
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="assets/plugins/css/bootstrap.min.css">
+    <!-- Font Awesome 4.7 -->
+    <link rel="stylesheet" href="assets/icons/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap">
+    <!-- Customize page styles -->
+    <link rel="stylesheet" href="assets/css/customize.css">
+</head>
+
+<body class="dark-vertion black-bg">
+
+    <!-- ========================
+         LOGIN SCREEN
+    ========================= -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-card">
+            <div class="auth-header">
+                <i class="fa fa-lock"></i>
+                <h1>Portfolio Settings</h1>
+                <p>Enter your password to continue</p>
+            </div>
+
+            <!-- First-time setup -->
+            <form id="setup-form" class="auth-form hidden">
+                <p class="auth-hint">Set up your admin password</p>
+                <div class="form-group">
+                    <label for="setup-pass" class="sr-only">New password</label>
+                    <input type="password" id="setup-pass" class="form-control" placeholder="New password"
+                        required minlength="8" autocomplete="new-password">
+                </div>
+                <div class="form-group">
+                    <label for="setup-confirm" class="sr-only">Confirm password</label>
+                    <input type="password" id="setup-confirm" class="form-control" placeholder="Confirm password"
+                        required minlength="8" autocomplete="new-password">
+                </div>
+                <div class="password-strength" id="strength-meter">
+                    <div class="strength-bar"></div>
+                    <span class="strength-label"></span>
+                </div>
+                <div id="setup-error" class="auth-error hidden"></div>
+                <button type="submit" class="btn btn-fill btn-block">Set Password</button>
+            </form>
+
+            <!-- Login -->
+            <form id="login-form" class="auth-form hidden">
+                <div class="form-group">
+                    <label for="login-pass" class="sr-only">Password</label>
+                    <input type="password" id="login-pass" class="form-control" placeholder="Password"
+                        required autocomplete="current-password">
+                </div>
+                <div id="login-error" class="auth-error hidden"></div>
+                <button type="submit" class="btn btn-fill btn-block">Unlock</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================
+         ADMIN PANEL
+    ========================= -->
+    <div id="admin-panel" class="admin-panel hidden">
+        <!-- Top bar -->
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <button class="btn-icon sidebar-toggle" aria-label="Toggle sidebar">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <h2>Portfolio Settings</h2>
+            </div>
+            <div class="topbar-right">
+                <span class="session-timer" id="session-timer" title="Session timeout"></span>
+                <a href="index.html" class="btn btn-sm btn-outline" target="_blank">
+                    <i class="fa fa-external-link"></i> View Site
+                </a>
+                <button class="btn btn-sm btn-outline" id="btn-logout">
+                    <i class="fa fa-sign-out"></i> Lock
+                </button>
+            </div>
+        </header>
+
+        <div class="admin-body">
+            <!-- Sidebar nav -->
+            <nav class="admin-sidebar" id="admin-sidebar">
+                <ul class="sidebar-nav">
+                    <li class="active" data-section="theme">
+                        <i class="fa fa-paint-brush"></i> <span>Visual Theme</span>
+                    </li>
+                    <li data-section="animations">
+                        <i class="fa fa-magic"></i> <span>Animations</span>
+                    </li>
+                    <li data-section="layout">
+                        <i class="fa fa-th-large"></i> <span>Layout & Header</span>
+                    </li>
+                    <li data-section="images">
+                        <i class="fa fa-picture-o"></i> <span>Image References</span>
+                    </li>
+                    <li data-section="projects">
+                        <i class="fa fa-briefcase"></i> <span>Projects & Gallery</span>
+                    </li>
+                    <li data-section="skills">
+                        <i class="fa fa-bar-chart"></i> <span>Skills Manager</span>
+                    </li>
+                    <li data-section="content">
+                        <i class="fa fa-pencil"></i> <span>Content & Bio</span>
+                    </li>
+                    <li data-section="seo">
+                        <i class="fa fa-search"></i> <span>SEO & Technical</span>
+                    </li>
+                    <li data-section="backup">
+                        <i class="fa fa-download"></i> <span>Backup</span>
+                    </li>
+                    <li data-section="security">
+                        <i class="fa fa-shield"></i> <span>Security</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main content area -->
+            <main class="admin-main">
+                <!-- ========= VISUAL THEME ========= -->
+                <section class="settings-section" id="sec-theme">
+                    <h3>Visual Theme</h3>
+
+                    <div class="setting-group">
+                        <h4>Color Palette</h4>
+                        <div class="color-presets" id="color-presets">
+                            <button class="color-swatch" data-color="#2196F3" style="background:#2196F3" title="Blue Munsell"></button>
+                            <button class="color-swatch" data-color="#0bceaf" style="background:#0bceaf" title="Default Teal"></button>
+                            <button class="color-swatch" data-color="#e91e63" style="background:#e91e63" title="Pink"></button>
+                            <button class="color-swatch" data-color="#ff9800" style="background:#ff9800" title="Orange"></button>
+                            <button class="color-swatch" data-color="#4caf50" style="background:#4caf50" title="Green"></button>
+                            <button class="color-swatch" data-color="#9c27b0" style="background:#9c27b0" title="Purple"></button>
+                            <button class="color-swatch" data-color="#f44336" style="background:#f44336" title="Red"></button>
+                            <button class="color-swatch" data-color="#00bcd4" style="background:#00bcd4" title="Cyan"></button>
+                        </div>
+                        <div class="custom-color-row">
+                            <label for="custom-accent">Custom accent:</label>
+                            <input type="color" id="custom-accent" value="#2196F3">
+                            <span class="color-hex" id="color-hex-label">#2196F3</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Typography</h4>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="font-heading">Heading Font</label>
+                                <select id="font-heading" class="form-control">
+                                    <option value="Roboto">Roboto</option>
+                                    <option value="Inter">Inter</option>
+                                    <option value="Poppins">Poppins</option>
+                                    <option value="Montserrat">Montserrat</option>
+                                    <option value="Playfair Display">Playfair Display</option>
+                                    <option value="Space Grotesk">Space Grotesk</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="font-body">Body Font</label>
+                                <select id="font-body" class="form-control">
+                                    <option value="Roboto">Roboto</option>
+                                    <option value="Inter">Inter</option>
+                                    <option value="Open Sans">Open Sans</option>
+                                    <option value="Lato">Lato</option>
+                                    <option value="Source Sans 3">Source Sans 3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Spacing Scale</h4>
+                        <div class="slider-row">
+                            <label for="spacing-scale">Section Padding</label>
+                            <input type="range" id="spacing-scale" min="0.5" max="2" step="0.1" value="1">
+                            <span class="range-val" id="spacing-val">1x</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= ANIMATIONS ========= -->
+                <section class="settings-section hidden" id="sec-animations">
+                    <h3>Animations</h3>
+
+                    <div class="setting-group">
+                        <h4>Animation Toggles</h4>
+                        <div class="toggle-grid">
+                            <label class="toggle-item">
+                                <input type="checkbox" id="anim-reveal" checked>
+                                <span>Scroll Reveals</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="anim-parallax" checked>
+                                <span>Parallax</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="anim-hover" checked>
+                                <span>Hover Effects</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="anim-cursor" checked>
+                                <span>Cursor Glow</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="anim-shimmer" checked>
+                                <span>Text Shimmer</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="anim-hero-float" checked>
+                                <span>Hero Float</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="anim-ripple" checked>
+                                <span>Button Ripple</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="anim-page-entry" checked>
+                                <span>Page Entry</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Speed & Intensity</h4>
+                        <div class="slider-row">
+                            <label for="anim-speed">Animation Duration</label>
+                            <input type="range" id="anim-speed" min="0.3" max="2" step="0.1" value="0.8">
+                            <span class="range-val" id="anim-speed-val">0.8s</span>
+                        </div>
+                        <div class="slider-row">
+                            <label for="anim-intensity">Reveal Distance</label>
+                            <input type="range" id="anim-intensity" min="20" max="120" step="5" value="60">
+                            <span class="range-val" id="anim-intensity-val">60px</span>
+                        </div>
+                        <div class="slider-row">
+                            <label for="anim-stagger">Stagger Delay</label>
+                            <input type="range" id="anim-stagger" min="0.05" max="0.3" step="0.01" value="0.1">
+                            <span class="range-val" id="anim-stagger-val">0.1s</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= LAYOUT & HEADER ========= -->
+                <section class="settings-section hidden" id="sec-layout">
+                    <h3>Layout & Header Configuration</h3>
+
+                    <div class="setting-group">
+                        <h4>Header Topbar</h4>
+                        <p class="setting-hint">Control the top bar with contact info and social links</p>
+                        <label class="toggle-item" style="margin-bottom: 14px;">
+                            <input type="checkbox" id="topbar-enable" checked>
+                            <span>Enable Header Topbar (Contact info, quick links & customize button)</span>
+                        </label>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="topbar-email">Topbar Email</label>
+                                <input type="email" id="topbar-email" class="form-control" value="mssubhash07@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="topbar-phone">Topbar Phone</label>
+                                <input type="text" id="topbar-phone" class="form-control" value="+91 7305263247">
+                            </div>
+                        </div>
+                        <div class="form-grid-2" style="margin-top: 10px;">
+                            <div class="form-group">
+                                <label for="topbar-location">Location</label>
+                                <input type="text" id="topbar-location" class="form-control" value="Villupuram, Tamil Nadu">
+                            </div>
+                            <div class="form-group">
+                                <label for="topbar-whatsapp">WhatsApp Link</label>
+                                <input type="text" id="topbar-whatsapp" class="form-control" value="https://wa.me/917305263247">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 10px;">
+                            <label for="topbar-resume">Resume / CV URL (Google Drive / Direct Link)</label>
+                            <input type="url" id="topbar-resume" class="form-control" value="https://drive.google.com/open?id=1tRNt6tau2rDxyL40dVvEIzJxpE0_4MDm&amp;usp=drive_fs">
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Container Width</h4>
+                        <div class="slider-row">
+                            <label for="container-width">Max Width</label>
+                            <input type="range" id="container-width" min="960" max="1400" step="20" value="1140">
+                            <span class="range-val" id="container-width-val">1140px</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Navigation Style</h4>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="nav-style" value="fixed" checked>
+                                <span>Fixed (sticky on scroll)</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="nav-style" value="static">
+                                <span>Static (scrolls away)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Section Order</h4>
+                        <p class="setting-hint">Drag to reorder sections on the portfolio page</p>
+                        <ul class="section-order-list" id="section-order">
+                            <li data-id="home"><i class="fa fa-arrows"></i> Home / Hero</li>
+                            <li data-id="about"><i class="fa fa-arrows"></i> About</li>
+                            <li data-id="services"><i class="fa fa-arrows"></i> Services</li>
+                            <li data-id="portfolio"><i class="fa fa-arrows"></i> Featured Projects</li>
+                            <li data-id="skills"><i class="fa fa-arrows"></i> Skills</li>
+                            <li data-id="education"><i class="fa fa-arrows"></i> Education</li>
+                            <li data-id="gallery"><i class="fa fa-arrows"></i> Gallery</li>
+                            <li data-id="cta"><i class="fa fa-arrows"></i> Call to Action</li>
+                            <li data-id="contact"><i class="fa fa-arrows"></i> Contact</li>
+                        </ul>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Grid Density</h4>
+                        <div class="slider-row">
+                            <label for="grid-gap">Grid Gap</label>
+                            <input type="range" id="grid-gap" min="10" max="60" step="5" value="30">
+                            <span class="range-val" id="grid-gap-val">30px</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= IMAGE REFERENCES & MEDIA ========= -->
+                <section class="settings-section hidden" id="sec-images">
+                    <div class="section-header-row">
+                        <h3>Image References & Media</h3>
+                        <button class="btn btn-sm btn-outline" id="btn-reset-images">
+                            <i class="fa fa-undo"></i> Reset Default Images
+                        </button>
+                    </div>
+
+                    <p class="setting-hint" style="margin-bottom: 20px;">
+                        Configure image paths or external URLs with real-time thumbnail preview. Changes update live across the entire website.
+                    </p>
+
+                    <div class="image-ref-grid">
+                        <!-- Hero Image Card -->
+                        <div class="image-ref-card">
+                            <div class="image-ref-card-header">
+                                <h5>Hero Profile Photo</h5>
+                                <span class="badge">Hero Section</span>
+                            </div>
+                            <div class="img-preview-box" id="preview-box-hero">
+                                <img src="assets/images/hero.png" id="img-thumb-hero" alt="Hero Preview" onerror="this.style.display='none'">
+                                <span class="placeholder-text hidden" id="placeholder-hero">No image preview</span>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label for="img-ref-hero">Image Path / URL</label>
+                                <input type="text" id="img-ref-hero" class="form-control" value="assets/images/hero.png" placeholder="e.g. assets/images/hero.png or https://...">
+                            </div>
+                        </div>
+
+                        <!-- About Image Card -->
+                        <div class="image-ref-card">
+                            <div class="image-ref-card-header">
+                                <h5>About Section Illustration</h5>
+                                <span class="badge">About Section</span>
+                            </div>
+                            <div class="img-preview-box" id="preview-box-about">
+                                <img src="assets/images/ab-img.png" id="img-thumb-about" alt="About Preview" onerror="this.style.display='none'">
+                                <span class="placeholder-text hidden" id="placeholder-about">No image preview</span>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label for="img-ref-about">Image Path / URL</label>
+                                <input type="text" id="img-ref-about" class="form-control" value="assets/images/ab-img.png" placeholder="e.g. assets/images/ab-img.png or https://...">
+                            </div>
+                        </div>
+
+                        <!-- Modal Companion Image 1 -->
+                        <div class="image-ref-card">
+                            <div class="image-ref-card-header">
+                                <h5>Modal Companion Visual 1</h5>
+                                <span class="badge">Portfolio Modal</span>
+                            </div>
+                            <div class="img-preview-box" id="preview-box-modal-0">
+                                <img src="assets/images/pr-0.jpg" id="img-thumb-modal-0" alt="Modal Visual 1" onerror="this.style.display='none'">
+                                <span class="placeholder-text hidden" id="placeholder-modal-0">No image preview</span>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label for="img-ref-modal-0">Image Path / URL</label>
+                                <input type="text" id="img-ref-modal-0" class="form-control" value="assets/images/pr-0.jpg" placeholder="e.g. assets/images/pr-0.jpg or https://...">
+                            </div>
+                        </div>
+
+                        <!-- Modal Companion Image 2 -->
+                        <div class="image-ref-card">
+                            <div class="image-ref-card-header">
+                                <h5>Modal Companion Visual 2</h5>
+                                <span class="badge">Portfolio Modal</span>
+                            </div>
+                            <div class="img-preview-box" id="preview-box-modal-1">
+                                <img src="assets/images/pr-1.jpg" id="img-thumb-modal-1" alt="Modal Visual 2" onerror="this.style.display='none'">
+                                <span class="placeholder-text hidden" id="placeholder-modal-1">No image preview</span>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label for="img-ref-modal-1">Image Path / URL</label>
+                                <input type="text" id="img-ref-modal-1" class="form-control" value="assets/images/pr-1.jpg" placeholder="e.g. assets/images/pr-1.jpg or https://...">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= PROJECTS & GALLERY ========= -->
+                <section class="settings-section hidden" id="sec-projects">
+                    <div class="section-header-row">
+                        <h3>Projects & Gallery Management</h3>
+                        <button class="btn btn-fill btn-sm" id="btn-toggle-add-project">
+                            <i class="fa fa-plus"></i> Add New Project
+                        </button>
+                    </div>
+
+                    <!-- Add Project Form Card (Collapsible) -->
+                    <div class="add-box-card hidden" id="add-project-card">
+                        <h5><i class="fa fa-plus-circle"></i> Add New Project Item</h5>
+                        <form id="form-add-project">
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="new-proj-title">Project Title *</label>
+                                    <input type="text" id="new-proj-title" class="form-control" placeholder="e.g. Gesture Recognition AI" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-proj-category">Category *</label>
+                                    <select id="new-proj-category" class="form-control">
+                                        <option value="Computer Vision">Computer Vision</option>
+                                        <option value="Web Applications">Web Applications</option>
+                                        <option value="Python">Python</option>
+                                        <option value="Web Design">Web Design</option>
+                                        <option value="Photography & UI">Photography & UI</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-grid-2" style="margin-top: 10px;">
+                                <div class="form-group">
+                                    <label for="new-proj-subtitle">Technologies / Subtitle</label>
+                                    <input type="text" id="new-proj-subtitle" class="form-control" placeholder="e.g. Python · OpenCV · MediaPipe">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-proj-img">Image Path / URL *</label>
+                                    <input type="text" id="new-proj-img" class="form-control" placeholder="e.g. assets/images/portfolio/g6.png" value="assets/images/portfolio/g1.jpg" required>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="new-proj-link">GitHub / Demo URL</label>
+                                <input type="url" id="new-proj-link" class="form-control" placeholder="https://github.com/Dr-LEO-MS/...">
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="new-proj-desc">Project Description</label>
+                                <textarea id="new-proj-desc" class="form-control" rows="3" placeholder="Describe the purpose, features and technology stack of the project..."></textarea>
+                            </div>
+                            <div class="form-grid-2" style="margin-top: 10px; align-items: center;">
+                                <label class="toggle-item">
+                                    <input type="checkbox" id="new-proj-featured" checked>
+                                    <span>Include in Featured Section</span>
+                                </label>
+                                <label class="toggle-item">
+                                    <input type="checkbox" id="new-proj-gallery" checked>
+                                    <span>Include in Gallery Section</span>
+                                </label>
+                            </div>
+                            <div style="margin-top: 16px; display: flex; justify-content: flex-end; gap: 10px;">
+                                <button type="button" class="btn btn-outline btn-sm" id="btn-cancel-add-project">Cancel</button>
+                                <button type="submit" class="btn btn-fill btn-sm"><i class="fa fa-check"></i> Save Project</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Project List Container -->
+                    <div class="setting-group">
+                        <h4>All Portfolio Projects</h4>
+                        <p class="setting-hint">Manage existing projects, toggle visibility or delete items</p>
+                        <div class="dynamic-project-list" id="dynamic-project-list">
+                            <!-- Injected via JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= SKILLS MANAGEMENT ========= -->
+                <section class="settings-section hidden" id="sec-skills">
+                    <div class="section-header-row">
+                        <h3>Skills Management</h3>
+                        <div style="display:flex; gap: 8px;">
+                            <button class="btn btn-fill btn-sm" id="btn-toggle-add-tech-skill">
+                                <i class="fa fa-plus"></i> Add Technical Skill
+                            </button>
+                            <button class="btn btn-outline btn-sm" id="btn-toggle-add-prof-skill">
+                                <i class="fa fa-plus"></i> Add Professional Skill
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Add Technical Skill Form (Collapsible) -->
+                    <div class="add-box-card hidden" id="add-tech-skill-card">
+                        <h5><i class="fa fa-code"></i> Add New Technical Skill</h5>
+                        <form id="form-add-tech-skill">
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="new-tech-skill-name">Skill Name *</label>
+                                    <input type="text" id="new-tech-skill-name" class="form-control" placeholder="e.g. OpenCV, FastAPI, Docker" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-tech-skill-pct">Proficiency Percentage (1-100%) *</label>
+                                    <div class="slider-row" style="margin: 0;">
+                                        <input type="range" id="new-tech-skill-pct" min="10" max="100" step="5" value="85">
+                                        <span class="range-val" id="new-tech-skill-pct-val">85%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 14px; display: flex; justify-content: flex-end; gap: 10px;">
+                                <button type="button" class="btn btn-outline btn-sm" id="btn-cancel-add-tech-skill">Cancel</button>
+                                <button type="submit" class="btn btn-fill btn-sm"><i class="fa fa-check"></i> Add Skill</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Add Professional Skill Form (Collapsible) -->
+                    <div class="add-box-card hidden" id="add-prof-skill-card">
+                        <h5><i class="fa fa-users"></i> Add New Professional Skill</h5>
+                        <form id="form-add-prof-skill">
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="new-prof-skill-name">Skill Name *</label>
+                                    <input type="text" id="new-prof-skill-name" class="form-control" placeholder="e.g. Problem Solving, Agile, Leadership" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-prof-skill-pct">Percentage (1-100%) *</label>
+                                    <div class="slider-row" style="margin: 0;">
+                                        <input type="range" id="new-prof-skill-pct" min="10" max="100" step="5" value="85">
+                                        <span class="range-val" id="new-prof-skill-pct-val">85%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 14px; display: flex; justify-content: flex-end; gap: 10px;">
+                                <button type="button" class="btn btn-outline btn-sm" id="btn-cancel-add-prof-skill">Cancel</button>
+                                <button type="submit" class="btn btn-fill btn-sm"><i class="fa fa-check"></i> Add Skill</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Technical Skills Section -->
+                    <div class="setting-group">
+                        <h4>Technical Skills (Progress Bars)</h4>
+                        <p class="setting-hint">Adjust proficiency sliders or remove technical skills</p>
+                        <div class="dynamic-skills-grid" id="dynamic-tech-skills-list">
+                            <!-- Injected via JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Professional Skills Section -->
+                    <div class="setting-group">
+                        <h4>Professional Skills (Circle Gauges)</h4>
+                        <p class="setting-hint">Adjust percentage levels or remove professional skills</p>
+                        <div class="dynamic-skills-grid" id="dynamic-prof-skills-list">
+                            <!-- Injected via JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= CONTENT & BIO ========= -->
+                <section class="settings-section hidden" id="sec-content">
+                    <h3>Content & Bio Management</h3>
+
+                    <div class="setting-group">
+                        <h4>Bio / About Text</h4>
+                        <div class="form-group">
+                            <label for="bio-text">About Paragraph</label>
+                            <textarea id="bio-text" class="form-control" rows="5"
+                                placeholder="Edit your about section text..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Gallery Category Filters</h4>
+                        <p class="setting-hint">Add, manage, or remove interactive filter tags for the gallery</p>
+                        <div class="tags-manager-box" id="category-tags-container">
+                            <!-- Injected via JavaScript -->
+                        </div>
+                        <div class="form-group" style="margin-top: 12px; display: flex; gap: 10px;">
+                            <input type="text" id="new-category-input" class="form-control" placeholder="Enter new category (e.g. Machine Learning, Cloud)...">
+                            <button type="button" class="btn btn-fill btn-sm" id="btn-add-category" style="white-space: nowrap;">
+                                <i class="fa fa-plus"></i> Add Category
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= SEO & TECHNICAL ========= -->
+                <section class="settings-section hidden" id="sec-seo">
+                    <h3>SEO & Technical</h3>
+
+                    <div class="setting-group">
+                        <h4>Meta Fields</h4>
+                        <div class="form-group">
+                            <label for="meta-title">Page Title</label>
+                            <input type="text" id="meta-title" class="form-control"
+                                placeholder="Portfolio — Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="meta-desc">Meta Description</label>
+                            <textarea id="meta-desc" class="form-control" rows="2"
+                                placeholder="A brief description of your portfolio..."></textarea>
+                            <span class="char-count" id="meta-desc-count">0/160</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="meta-keywords">Keywords</label>
+                            <input type="text" id="meta-keywords" class="form-control"
+                                placeholder="portfolio, developer, python...">
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Analytics</h4>
+                        <div class="form-group">
+                            <label for="ga-id">Google Analytics Measurement ID</label>
+                            <input type="text" id="ga-id" class="form-control" placeholder="G-XXXXXXXXXX">
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Performance</h4>
+                        <label class="toggle-item">
+                            <input type="checkbox" id="perf-mode">
+                            <span>Performance Mode (reduce animations on low-end devices)</span>
+                        </label>
+                        <div class="slider-row">
+                            <label for="img-quality">Image Quality</label>
+                            <input type="range" id="img-quality" min="50" max="100" step="5" value="85">
+                            <span class="range-val" id="img-quality-val">85%</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= BACKUP ========= -->
+                <section class="settings-section hidden" id="sec-backup">
+                    <h3>Backup & Restore</h3>
+
+                    <div class="setting-group">
+                        <h4>Export Settings</h4>
+                        <p class="setting-hint">Download all your customization settings as a JSON file</p>
+                        <button class="btn btn-fill" id="btn-export">
+                            <i class="fa fa-download"></i> Export Settings
+                        </button>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Import Settings</h4>
+                        <p class="setting-hint">Upload a previously exported JSON file to restore settings</p>
+                        <label class="btn btn-outline file-input-label">
+                            <i class="fa fa-upload"></i> Import Settings
+                            <input type="file" id="btn-import" accept=".json" class="hidden">
+                        </label>
+                        <div id="import-status" class="import-status hidden"></div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Reset to Defaults</h4>
+                        <p class="setting-hint">This will erase all customizations and restore factory settings</p>
+                        <button class="btn btn-danger" id="btn-reset">
+                            <i class="fa fa-refresh"></i> Reset All Settings
+                        </button>
+                    </div>
+                </section>
+
+                <!-- ========= SECURITY ========= -->
+                <section class="settings-section hidden" id="sec-security">
+                    <h3>Security</h3>
+
+                    <div class="setting-group">
+                        <h4>Change Password</h4>
+                        <form id="change-pass-form">
+                            <div class="form-group">
+                                <label for="current-pass">Current Password</label>
+                                <input type="password" id="current-pass" class="form-control"
+                                    required autocomplete="current-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-pass">New Password</label>
+                                <input type="password" id="new-pass" class="form-control"
+                                    required minlength="8" autocomplete="new-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-new-pass">Confirm New Password</label>
+                                <input type="password" id="confirm-new-pass" class="form-control"
+                                    required minlength="8" autocomplete="new-password">
+                            </div>
+                            <div class="password-strength" id="change-strength-meter">
+                                <div class="strength-bar"></div>
+                                <span class="strength-label"></span>
+                            </div>
+                            <div id="change-pass-error" class="auth-error hidden"></div>
+                            <div id="change-pass-success" class="auth-success hidden"></div>
+                            <button type="submit" class="btn btn-fill">Update Password</button>
+                        </form>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Session Timeout</h4>
+                        <div class="slider-row">
+                            <label for="session-timeout">Auto-lock after inactivity</label>
+                            <input type="range" id="session-timeout" min="5" max="60" step="5" value="15">
+                            <span class="range-val" id="session-timeout-val">15 min</span>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- Live preview panel -->
+            <aside class="admin-preview" id="admin-preview">
+                <div class="preview-header">
+                    <h4>Live Preview</h4>
+                    <button class="btn-icon" id="preview-toggle" aria-label="Toggle preview panel">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                </div>
+                <div class="preview-frame-wrap">
+                    <iframe id="preview-iframe" src="index.html" title="Live preview of portfolio"></iframe>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Confirm reset modal -->
+        <div class="modal-overlay hidden" id="reset-modal">
+            <div class="modal-card">
+                <h4>Reset All Settings?</h4>
+                <p>This action cannot be undone. All customizations will be restored to their default values.</p>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="reset-cancel">Cancel</button>
+                    <button class="btn btn-danger" id="reset-confirm">Reset Everything</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="assets/plugins/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="assets/plugins/js/bootstrap.min.js"></script>
+    <!-- Customize logic -->
+    <script src="assets/js/customize.js"></script>
+
+</body>
+</html>

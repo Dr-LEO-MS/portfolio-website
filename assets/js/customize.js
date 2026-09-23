@@ -45,7 +45,7 @@
       resumeUrl: 'https://drive.google.com/open?id=1tRNt6tau2rDxyL40dVvEIzJxpE0_4MDm&usp=drive_fs'
     },
     images: {
-      hero: 'assets/images/hero.png',
+      hero: 'assets/images/hero.jpg',
       about: 'assets/images/ab-img.png',
       modal0: 'assets/images/pr-0.jpg',
       modal1: 'assets/images/pr-1.jpg'
@@ -57,7 +57,7 @@
         category: 'Computer Vision',
         categoryFilter: 'computer-vision',
         subtitle: 'Python · OpenCV · MediaPipe',
-        img: 'assets/images/p-2.png',
+        img: 'assets/images/projects/open-fingers-counter.svg',
         link: 'https://github.com/Dr-LEO-MS/Finger-count-using-camera-py',
         desc: 'A real-time finger counting system with OpenCV and MediaPipe landmark detection.',
         featured: true,
@@ -69,7 +69,7 @@
         category: 'Web Applications',
         categoryFilter: 'web-app',
         subtitle: 'JavaScript · AI · ATS Compatible',
-        img: 'assets/images/portfolio/g1.jpg',
+        img: 'assets/images/projects/resume-ai.svg',
         link: 'https://github.com/Dr-LEO-MS/Resume-Ai',
         desc: 'An AI powered resume builder with ATS keyword analytics and live export.',
         featured: true,
@@ -81,7 +81,7 @@
         category: 'Python',
         categoryFilter: 'python',
         subtitle: 'Python · Weather APIs · Forecast Model',
-        img: 'assets/images/portfolio/g3.png',
+        img: 'assets/images/projects/weather-prediction.svg',
         link: 'https://github.com/Dr-LEO-MS/Weather-prediction-python',
         desc: 'A Python weather forecast tool utilizing real-time meteorological API data.',
         featured: true,
@@ -93,7 +93,7 @@
         category: 'Web Design',
         categoryFilter: 'web-design',
         subtitle: 'HTML5 · CSS3 · Vanilla JS',
-        img: 'assets/images/portfolio/g4.png',
+        img: 'assets/images/projects/portfolio-website.svg',
         link: 'https://github.com/Dr-LEO-MS/portfolio-website',
         desc: 'Modern, fast personal portfolio featuring live style switches and customizer.',
         featured: true,
@@ -105,7 +105,7 @@
         category: 'Web Applications',
         categoryFilter: 'web-app',
         subtitle: 'PHP · MySQL · JavaScript',
-        img: 'assets/images/portfolio/g5.png',
+        img: 'assets/images/projects/full-stack-platform.svg',
         link: 'https://github.com/Dr-LEO-MS',
         desc: 'Full stack responsive web portal with user authentication and database management.',
         featured: false,
@@ -117,7 +117,7 @@
         category: 'Computer Vision',
         categoryFilter: 'computer-vision',
         subtitle: 'Python · OpenCV · NumPy',
-        img: 'assets/images/portfolio/g6.png',
+        img: 'assets/images/projects/motion-detection.svg',
         link: 'https://github.com/Dr-LEO-MS',
         desc: 'Real-time motion sensing and gesture tracking pipeline using camera inputs.',
         featured: false,
@@ -129,7 +129,7 @@
         category: 'Photography & UI',
         categoryFilter: 'creative',
         subtitle: 'UI/UX · Dashboard · SVG Visuals',
-        img: 'assets/images/portfolio/g7.jpg',
+        img: 'assets/images/projects/analytics-dashboard.svg',
         link: 'https://github.com/Dr-LEO-MS',
         desc: 'High-fidelity visual dashboard interface for data monitoring and analytics.',
         featured: false,
@@ -141,7 +141,7 @@
         category: 'Python',
         categoryFilter: 'python',
         subtitle: 'Python · Automation · ETL',
-        img: 'assets/images/portfolio/g8.png',
+        img: 'assets/images/projects/automation-scripts.svg',
         link: 'https://github.com/Dr-LEO-MS',
         desc: 'Batch processing, automated web scrapers and task schedulers in Python.',
         featured: false,
@@ -153,7 +153,7 @@
         category: 'Photography & UI',
         categoryFilter: 'creative',
         subtitle: 'Visual UI · Branding · Assets',
-        img: 'assets/images/portfolio/g9.png',
+        img: 'assets/images/projects/visual-media.svg',
         link: 'https://github.com/Dr-LEO-MS',
         desc: 'Design assets, iconography and visual media created for modern web interfaces.',
         featured: false,
@@ -493,7 +493,7 @@
     var modal1Input = document.getElementById('img-ref-modal-1');
 
     if (heroInput) {
-      heroInput.value = currentSettings.images.hero || 'assets/images/hero.png';
+      heroInput.value = currentSettings.images.hero || 'assets/images/hero.jpg';
       updateImageThumb('img-ref-hero', 'img-thumb-hero', 'placeholder-hero');
     }
     if (aboutInput) {
@@ -529,13 +529,13 @@
       card.className = 'dynamic-project-card';
       card.setAttribute('data-index', index);
 
-      var imgPath = proj.img || 'assets/images/portfolio/g1.jpg';
+      var imgPath = proj.img || 'assets/images/projects/resume-ai.svg';
       var category = proj.category || 'General';
       var subtitle = proj.subtitle || '';
 
       card.innerHTML = `
         <div class="project-thumb-box">
-          <img src="${imgPath}" alt="${proj.title}" onerror="this.src='assets/images/portfolio/g1.jpg'">
+          <img src="${imgPath}" alt="${proj.title}" onerror="this.src='assets/images/projects/resume-ai.svg'">
         </div>
         <div class="project-info-wrap">
           <h5>${proj.title}</h5>
@@ -1111,7 +1111,7 @@
           category: category,
           categoryFilter: catSlug,
           subtitle: subtitle,
-          img: img || 'assets/images/portfolio/g1.jpg',
+          img: img || 'assets/images/projects/resume-ai.svg',
           link: link || '#',
           desc: desc,
           featured: isFeatured,
@@ -1397,6 +1397,15 @@
       });
     }
   }
+
+  // ==========================================================================
+  // Public API for the optional admin tools (Media Studio, Messages inbox)
+  // ==========================================================================
+  window.PortfolioAdmin = {
+    getSettings: function () { return currentSettings; },
+    save: saveSettings,
+    broadcast: broadcastSettingsToPreview
+  };
 
   // ==========================================================================
   // Initialization

@@ -719,3 +719,68 @@ section {
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   Lazy-loaded images — shimmer skeleton + fade in
+   The `.js` class is added by a tiny inline script in the page head, so when
+   JavaScript is unavailable every image simply stays visible.
+   ========================================================================== */
+.js img[loading="lazy"] {
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.04);
+  background-image: linear-gradient(100deg,
+      rgba(255, 255, 255, 0.02) 20%,
+      rgba(255, 255, 255, 0.09) 45%,
+      rgba(255, 255, 255, 0.02) 70%);
+  background-repeat: no-repeat;
+  background-size: 220% 100%;
+  animation: img-skeleton-shimmer 1.6s linear infinite;
+  transition: opacity var(--anim-duration-fast) var(--anim-ease);
+}
+
+.js img[loading="lazy"].img-loaded {
+  opacity: 1;
+  animation: none;
+  background-image: none;
+}
+
+@keyframes img-skeleton-shimmer {
+  from { background-position: 130% 0; }
+  to   { background-position: -130% 0; }
+}
+
+/* Optional shimmer frame for media that needs an explicit placeholder */
+.img-skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   Magnetic buttons — pointer-follow pull (see initMagneticButtons)
+   ========================================================================== */
+.btn.is-magnetic {
+  transition: transform 0.35s var(--anim-ease), box-shadow 0.35s var(--anim-ease);
+  will-change: transform;
+}
+
+.btn.is-magnetic:hover,
+.btn.is-magnetic:focus-visible {
+  box-shadow: 0 20px 36px -20px rgba(33, 150, 243, 0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js img[loading="lazy"],
+  .js img[loading="lazy"].img-loaded {
+    opacity: 1;
+    animation: none;
+    background-image: none;
+  }
+
+  .btn.is-magnetic {
+    transition: none;
+    transform: none !important;
+  }
+}
+

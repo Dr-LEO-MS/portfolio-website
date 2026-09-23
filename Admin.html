@@ -122,6 +122,13 @@
                     <li data-section="security">
                         <i class="fa fa-shield"></i> <span>Security</span>
                     </li>
+                    <li data-section="media">
+                        <i class="fa fa-cloud-upload"></i> <span>Media Studio</span>
+                    </li>
+                    <li data-section="messages">
+                        <i class="fa fa-envelope-open-o"></i> <span>Messages Inbox</span>
+                        <span class="nav-badge hidden" id="inbox-badge">0</span>
+                    </li>
                 </ul>
             </nav>
 
@@ -356,12 +363,12 @@
                                 <span class="badge">Hero Section</span>
                             </div>
                             <div class="img-preview-box" id="preview-box-hero">
-                                <img src="assets/images/hero.png" id="img-thumb-hero" alt="Hero Preview" onerror="this.style.display='none'">
+                                <img src="assets/images/hero.jpg" id="img-thumb-hero" alt="Hero Preview" onerror="this.style.display='none'">
                                 <span class="placeholder-text hidden" id="placeholder-hero">No image preview</span>
                             </div>
                             <div class="form-group" style="margin: 0;">
                                 <label for="img-ref-hero">Image Path / URL</label>
-                                <input type="text" id="img-ref-hero" class="form-control" value="assets/images/hero.png" placeholder="e.g. assets/images/hero.png or https://...">
+                                <input type="text" id="img-ref-hero" class="form-control" value="assets/images/hero.jpg" placeholder="e.g. assets/images/hero.jpg or https://...">
                             </div>
                         </div>
 
@@ -451,7 +458,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="new-proj-img">Image Path / URL *</label>
-                                    <input type="text" id="new-proj-img" class="form-control" placeholder="e.g. assets/images/portfolio/g6.png" value="assets/images/portfolio/g1.jpg" required>
+                                    <input type="text" id="new-proj-img" class="form-control" placeholder="e.g. assets/images/projects/motion-detection.svg" value="assets/images/projects/resume-ai.svg" required>
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 10px;">
@@ -717,6 +724,153 @@
                     </div>
                 </section>
 
+                <!-- ========= MEDIA STUDIO ========= -->
+                <section class="settings-section hidden" id="sec-media">
+                    <h3>Media Studio</h3>
+                    <p class="setting-hint">Drop a photo or screenshot, straighten and crop it, then export an
+                        optimised WebP or JPEG straight into <code>assets/images/</code> — no external tools needed.
+                        Files are processed in your browser, nothing is uploaded.</p>
+
+                    <div class="setting-group">
+                        <div class="media-dropzone" id="media-dropzone" tabindex="0" role="button"
+                            aria-describedby="media-drop-hint">
+                            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                            <strong>Drop images here</strong>
+                            <span id="media-drop-hint">or <em>browse your files</em> &middot; PNG, JPEG, GIF or WebP,
+                                up to 8&nbsp;MB each</span>
+                            <input type="file" id="media-file-input" class="hidden" multiple
+                                accept="image/png,image/jpeg,image/gif,image/webp">
+                        </div>
+                        <div id="media-status" class="import-status hidden" role="status" aria-live="polite"></div>
+                    </div>
+
+                    <div class="setting-group hidden" id="media-editor-wrap">
+                        <h4>Edit &amp; optimise</h4>
+                        <div class="media-editor">
+                            <div class="media-canvas-wrap">
+                                <canvas id="media-canvas" width="420" height="280"
+                                    aria-label="Preview of the selected image"></canvas>
+                                <p class="media-meta" id="media-meta"></p>
+                            </div>
+                            <div class="media-controls">
+                                <div class="form-group">
+                                    <label for="media-format">Output format</label>
+                                    <select id="media-format" class="form-control">
+                                        <option value="image/webp">WebP &mdash; smallest</option>
+                                        <option value="image/jpeg">JPEG &mdash; photos</option>
+                                        <option value="image/png">PNG &mdash; transparency</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="media-crop">Crop</label>
+                                    <select id="media-crop" class="form-control">
+                                        <option value="free">Keep the full frame</option>
+                                        <option value="16:9">16:9 &mdash; project covers</option>
+                                        <option value="3:2">3:2</option>
+                                        <option value="4:3">4:3</option>
+                                        <option value="1:1">1:1 &mdash; avatar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="media-filter">Look</label>
+                                    <select id="media-filter" class="form-control">
+                                        <option value="none">Original</option>
+                                        <option value="warm">Warm</option>
+                                        <option value="cool">Cool</option>
+                                        <option value="mono">Monochrome</option>
+                                        <option value="punch">Punchy</option>
+                                        <option value="soft">Soft</option>
+                                    </select>
+                                </div>
+                                <div class="slider-row">
+                                    <label for="media-width">Max width</label>
+                                    <input type="range" id="media-width" min="320" max="2400" step="20" value="1200">
+                                    <span class="range-val" id="media-width-val">1200 px</span>
+                                </div>
+                                <div class="slider-row">
+                                    <label for="media-quality">Quality</label>
+                                    <input type="range" id="media-quality" min="50" max="100" step="5" value="82">
+                                    <span class="range-val" id="media-quality-val">82%</span>
+                                </div>
+                                <div class="media-actions">
+                                    <button type="button" class="btn btn-sm btn-outline" id="media-rotate-left"
+                                        title="Rotate 90 degrees left"><i class="fa fa-rotate-left"></i> Left</button>
+                                    <button type="button" class="btn btn-sm btn-outline" id="media-rotate-right"
+                                        title="Rotate 90 degrees right"><i class="fa fa-rotate-right"></i> Right</button>
+                                    <button type="button" class="btn btn-sm btn-outline" id="media-flip-h"
+                                        title="Flip horizontally"><i class="fa fa-exchange"></i> Flip H</button>
+                                    <button type="button" class="btn btn-sm btn-outline" id="media-flip-v"
+                                        title="Flip vertically"><i class="fa fa-exchange fa-rotate-90"></i> Flip V</button>
+                                    <button type="button" class="btn btn-sm btn-outline" id="media-reset"
+                                        title="Reset every edit"><i class="fa fa-undo"></i> Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setting-group hidden" id="media-export-wrap">
+                        <h4>Save &amp; apply</h4>
+                        <div class="form-group">
+                            <label for="media-dest">Suggested file name</label>
+                            <input type="text" id="media-dest" class="form-control"
+                                placeholder="assets/images/projects/my-project.webp">
+                        </div>
+                        <div class="form-group">
+                            <label for="media-slot">Apply to a page slot</label>
+                            <select id="media-slot" class="form-control">
+                                <option value="">Download only</option>
+                                <option value="hero">Hero portrait</option>
+                                <option value="about">About illustration</option>
+                                <option value="modal0">Project modal image 1</option>
+                                <option value="modal1">Project modal image 2</option>
+                            </select>
+                        </div>
+                        <div class="media-actions">
+                            <button type="button" class="btn btn-fill" id="media-download">
+                                <i class="fa fa-download"></i> Download optimised file</button>
+                            <button type="button" class="btn btn-outline" id="media-copy">
+                                <i class="fa fa-clipboard"></i> Copy path</button>
+                            <button type="button" class="btn btn-outline" id="media-save-slot">
+                                <i class="fa fa-check"></i> Apply to slot</button>
+                        </div>
+                        <p class="setting-hint" id="media-export-note">Pick a file name that matches where you upload
+                            the file, then use “Apply to slot” to point the site at it.</p>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Studio library</h4>
+                        <p class="setting-hint">Exports made in this browser. The file itself goes to your downloads
+                            folder &mdash; the library remembers the path, size and preview so you can re-apply it later.</p>
+                        <div class="media-library" id="media-library"></div>
+                        <div class="quota-meter">
+                            <div class="quota-bar"><span id="quota-fill"></span></div>
+                            <p class="quota-text" id="quota-text">Checking browser storage&hellip;</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========= MESSAGES INBOX ========= -->
+                <section class="settings-section hidden" id="sec-messages">
+                    <h3>Messages Inbox</h3>
+                    <p class="setting-hint">Enquiries handled by this browser: messages that were delivered and
+                        messages still waiting in the contact form's offline queue. Delivery itself is handled by
+                        <code>assets/js/contact-config.js</code>.</p>
+
+                    <div class="setting-group">
+                        <div class="inbox-toolbar">
+                            <button type="button" class="btn btn-sm btn-fill" id="btn-inbox-retry">
+                                <i class="fa fa-refresh"></i> Retry pending</button>
+                            <button type="button" class="btn btn-sm btn-outline" id="btn-inbox-export">
+                                <i class="fa fa-download"></i> Export CSV</button>
+                            <button type="button" class="btn btn-sm btn-danger" id="btn-inbox-clear">
+                                <i class="fa fa-trash"></i> Clear log</button>
+                            <span class="inbox-count" id="inbox-count"></span>
+                        </div>
+                        <div id="inbox-status" class="import-status hidden" role="status" aria-live="polite"></div>
+                        <div class="inbox-list" id="inbox-list"></div>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Live preview panel -->
@@ -752,6 +906,10 @@
     <script src="assets/plugins/js/bootstrap.min.js"></script>
     <!-- Customize logic -->
     <script src="assets/js/customize.js"></script>
+    <!-- Contact form settings (endpoint/access key shared with the public site) -->
+    <script src="assets/js/contact-config.js"></script>
+    <!-- Media Studio + Messages inbox (uses window.PortfolioAdmin) -->
+    <script src="assets/js/admin-media.js"></script>
 
 </body>
 </html>

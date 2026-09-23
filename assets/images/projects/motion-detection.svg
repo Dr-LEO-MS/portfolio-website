@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-labelledby="c6title c6desc">
+  <title id="c6title">Motion and Gesture Detection - project cover</title>
+  <desc id="c6desc">Dark technical card showing a camera, motion arcs and a tracked person inside a detection bounding box.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191734"/><stop offset="1" stop-color="#0e0d19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00bcd4" stop-opacity="0.26"/><stop offset="1" stop-color="#00bcd4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00bcd4"/><stop offset="1" stop-color="#2196f3"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <circle cx="870" cy="280" r="340" fill="url(#glow)"/>
+  <text x="1150" y="170" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="160" font-weight="800" fill="#ffffff" fill-opacity="0.05">06</text>
+
+  <g>
+    <!-- camera -->
+    <rect x="430" y="220" width="300" height="176" rx="26" fill="#1b1930" stroke="#ffffff" stroke-opacity="0.12"/>
+    <circle cx="580" cy="308" r="62" fill="none" stroke="url(#acc)" stroke-width="10"/>
+    <circle cx="580" cy="308" r="30" fill="#00bcd4" fill-opacity="0.35"/>
+    <circle cx="580" cy="308" r="12" fill="#ffffff" fill-opacity="0.9"/>
+    <rect x="676" y="252" width="34" height="18" rx="9" fill="#4caf50"/>
+    <text x="430" y="440" font-family="Consolas, Menlo, monospace" font-size="18" fill="#9aa3b2">webcam_0</text>
+
+    <!-- motion arcs -->
+    <g fill="none" stroke="#00bcd4" stroke-linecap="round">
+      <path d="M762 262a108 108 0 0 1 0 92" stroke-width="6" stroke-dasharray="14 12"/>
+      <path d="M800 240a150 150 0 0 1 0 136" stroke-width="5" stroke-dasharray="12 14" stroke-opacity="0.7"/>
+      <path d="M838 218a192 192 0 0 1 0 180" stroke-width="4" stroke-dasharray="10 16" stroke-opacity="0.45"/>
+    </g>
+
+    <!-- tracked person + bounding box -->
+    <g>
+      <circle cx="1000" cy="270" r="26" fill="#ffffff" fill-opacity="0.85"/>
+      <path d="M968 372c0-24 14-44 32-44s32 20 32 44v58h-64z" fill="#ffffff" fill-opacity="0.62"/>
+      <g stroke="#4caf50" stroke-width="6" stroke-linecap="round" fill="none">
+        <path d="M950 214h30M950 214v30"/><path d="M1050 214h-30M1050 214v30"/>
+        <path d="M950 442h30M950 442v-30"/><path d="M1050 442h-30M1050 442v-30"/>
+      </g>
+      <rect x="1002" y="182" width="150" height="38" rx="19" fill="#4caf50"/>
+      <text x="1077" y="209" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="19" fill="#0e0d19">person 0.98</text>
+    </g>
+
+    <!-- motion vectors -->
+    <g stroke="#2196f3" stroke-width="5" stroke-linecap="round">
+      <path d="M456 520h84"/><path d="M540 520l-16-9v18z" fill="#2196f3"/>
+      <path d="M456 566h132"/><path d="M588 566l-16-9v18z" fill="#2196f3"/>
+      <path d="M456 612h60"/><path d="M516 612l-16-9v18z" fill="#2196f3"/>
+    </g>
+    <text x="620" y="176" font-family="Consolas, Menlo, monospace" font-size="18" fill="#9aa3b2">frame 1024 / motion mask</text>
+  </g>
+
+  <g>
+    <rect x="80" y="608" width="6" height="80" rx="3" fill="#2196f3"/>
+    <text x="112" y="650" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">Motion Detection</text>
+    <text x="112" y="688" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#9aa3b2">OpenCV &#183; Python &#183; Real-time Vision</text>
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-labelledby="c8title c8desc">
+  <title id="c8title">Automation Scripts - project cover</title>
+  <desc id="c8desc">Dark technical card showing a terminal window running a Python automation script with a gear and data flow icons.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191734"/><stop offset="1" stop-color="#0e0d19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4caf50" stop-opacity="0.24"/><stop offset="1" stop-color="#4caf50" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4caf50"/><stop offset="1" stop-color="#2196f3"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <circle cx="860" cy="270" r="340" fill="url(#glow)"/>
+  <text x="1150" y="170" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="160" font-weight="800" fill="#ffffff" fill-opacity="0.05">08</text>
+
+  <g>
+    <rect x="430" y="118" width="620" height="452" rx="22" fill="#1b1930" stroke="#ffffff" stroke-opacity="0.08"/>
+    <path d="M452 142h576a18 18 0 0 1 18 18v30H434v-30a18 18 0 0 1 18-18z" fill="#252242"/>
+    <g fill="#ff5f57"><circle cx="462" cy="166" r="7"/></g>
+    <g fill="#febc2e"><circle cx="486" cy="166" r="7"/></g>
+    <g fill="#28c840"><circle cx="510" cy="166" r="7"/></g>
+    <text x="548" y="173" font-family="Consolas, Menlo, monospace" font-size="16" fill="#9aa3b2">auto_pipeline.py - python 3.12</text>
+
+    <g font-family="Consolas, Menlo, monospace" font-size="19">
+      <text x="470" y="228" fill="#4caf50">$ python auto_pipeline.py --watch</text>
+      <text x="470" y="266" fill="#9aa3b2">[ok]  reading source workbook &#183; 12,480 rows</text>
+      <text x="470" y="300" fill="#9aa3b2">[ok]  cleaning nulls &#183; normalising columns</text>
+      <text x="470" y="334" fill="#2196f3">[run] pandas.merge -&gt; report.xlsx</text>
+      <text x="470" y="368" fill="#9aa3b2">[ok]  mailing summary to 4 recipients</text>
+      <text x="470" y="402" fill="#4caf50">[done] job finished in 1.84s &#183; 0 errors</text>
+      <text x="470" y="436" fill="#4caf50">$ <tspan fill="#e8ecf6">_</tspan></text>
+    </g>
+
+    <g>
+      <rect x="470" y="466" width="72" height="72" rx="14" fill="#121026" stroke="#ffffff" stroke-opacity="0.10"/>
+      <path d="M494 486h24l-6 12h-24z" fill="#4caf50"/>
+      <path d="M488 502h24v22h-24z" fill="#4caf50" fill-opacity="0.55"/>
+      <text x="560" y="500" font-family="Consolas, Menlo, monospace" font-size="16" fill="#9aa3b2">xlsx / csv</text>
+      <text x="560" y="526" font-family="Consolas, Menlo, monospace" font-size="16" fill="#9aa3b2">cron &#183; scheduler</text>
+      <rect x="826" y="466" width="72" height="72" rx="14" fill="#121026" stroke="#ffffff" stroke-opacity="0.10"/>
+      <circle cx="862" cy="502" r="20" fill="none" stroke="url(#acc)" stroke-width="6" stroke-dasharray="16 10"/>
+      <circle cx="862" cy="502" r="6" fill="#2196f3"/>
+      <rect x="940" y="466" width="72" height="72" rx="14" fill="#121026" stroke="#ffffff" stroke-opacity="0.10"/>
+      <path d="M960 480h32v40h-32z" fill="#2196f3" fill-opacity="0.35"/>
+      <path d="M966 492h20M966 502h20M966 512h12" stroke="#2196f3" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <g>
+    <rect x="80" y="608" width="6" height="80" rx="3" fill="#2196f3"/>
+    <text x="112" y="650" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">Automation Scripts</text>
+    <text x="112" y="688" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#9aa3b2">Python &#183; Pandas &#183; Task Pipelines</text>
+  </g>
+</svg>

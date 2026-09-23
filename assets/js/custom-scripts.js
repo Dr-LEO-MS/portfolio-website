@@ -511,36 +511,22 @@
   // =====================
   // Contact Form
   // =====================
+  // Inline validation, spam protection and delivery live in
+  // assets/js/contact-form.js. The small handler below is only used when that
+  // module is unavailable (blocked script, offline checkout of the repo).
   var contactForm = $("#contactForm");
 
-  function showFieldError() {
-    contactForm.addClass("shake animated")
-      .one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
-        function() { $(this).removeClass("shake animated"); });
-  }
-
-  function showMessage(valid, msg) {
-    var $msg = $("#msgSubmit");
-    if (!$msg.length) return;
-    var classes = valid
-      ? "h3 text-center fadeInUp animated text-success"
-      : "h3 text-center shake animated text-danger";
-    $msg.removeClass("hidden fadeInUp shake animated text-success text-danger")
-      .addClass(classes).text(msg);
-  }
-
-  if (contactForm.length && typeof contactForm.validator === "function") {
-    contactForm.validator().on("submit", function(event) {
-      if (event.isDefaultPrevented()) {
-        showFieldError();
-        showMessage(false, "Did you fill in the form properly?");
-      } else {
-        showMessage(true, "Opening your email app - press Send there to deliver your message.");
+  if (contactForm.length && !window.PortfolioContact) {
+    contactForm.on("submit", function(event) {
+      if (typeof contactForm[0].checkValidity === "function" && !contactForm[0].checkValidity()) {
+        return;
       }
-    });
-  } else if (contactForm.length) {
-    contactForm.on("submit", function() {
-      showMessage(true, "Opening your email app - press Send there to deliver your message.");
+      event.preventDefault();
+      var $msg = $("#msgSubmit");
+      $msg.removeClass("hidden")
+        .addClass("contact-alert is-info")
+        .text("Opening your email app - press Send there to deliver your message.");
+      window.location.href = contactForm.attr("action");
     });
   }
 
@@ -765,6 +751,77 @@
   }
 
   // =====================
+  // Lazy Image Reveal (skeleton -> fade in)
+  // =====================
+  // Every image with loading="lazy" sits on a shimmering skeleton
+  // (see animations.css) and fades in as soon as it has decoded. This keeps
+  // the layout calm on slow connections instead of popping images in.
+  function initLazyImageReveal() {
+    var images = document.querySelectorAll('img[loading="lazy"]');
+    if (!images.length) return;
+
+    function reveal(img) {
+      img.classList.add("img-loaded");
+      var frame = img.parentElement;
+      if (frame && frame.classList.contains("img-skeleton")) {
+        frame.classList.remove("img-skeleton");
+      }
+    }
+
+    Array.prototype.forEach.call(images, function(img) {
+      if (img.complete && img.naturalWidth > 0) {
+        reveal(img);
+        return;
+      }
+      img.addEventListener("load", function() { reveal(img); });
+      img.addEventListener("error", function() { reveal(img); });
+    });
+  }
+
+  // =====================
+  // Magnetic Buttons
+  // =====================
+  // Pointer-relative pull on calls to action. Skipped for touch devices and
+  // for visitors who asked for reduced motion.
+  function initMagneticButtons() {
+    if (prefersReducedMotion || window.matchMedia("(hover: none)").matches) return;
+
+    var strength = 0.2;
+    // Only plain buttons: tilt targets need their own transform untouched.
+    var buttons = document.querySelectorAll(".btn");
+
+    Array.prototype.forEach.call(buttons, function(el) {
+      var frame = null, dx = 0, dy = 0;
+
+      function apply() {
+        frame = null;
+        el.style.transform = "translate3d(" + dx.toFixed(2) + "px, " + dy.toFixed(2) + "px, 0)";
+      }
+
+      function queue() {
+        if (!frame) frame = window.requestAnimationFrame(apply);
+      }
+
+      el.addEventListener("mousemove", function(event) {
+        // never fight with an in-flight reveal animation
+        if (el.closest("[data-reveal]:not(.revealed)")) return;
+        var rect = el.getBoundingClientRect();
+        dx = (event.clientX - (rect.left + rect.width / 2)) * strength;
+        dy = (event.clientY - (rect.top + rect.height / 2)) * strength;
+        el.classList.add("is-magnetic");
+        queue();
+      });
+
+      el.addEventListener("mouseleave", function() {
+        dx = 0;
+        dy = 0;
+        queue();
+        window.setTimeout(function() { el.classList.remove("is-magnetic"); }, 400);
+      });
+    });
+  }
+
+  // =====================
   // Init all animation systems on DOMContentLoaded
   // =====================
   $(function() {
@@ -780,6 +837,8 @@
     initTypewriter();
     initCardTilt();
     initCountUp();
+    initLazyImageReveal();
+    initMagneticButtons();
   });
 
 }(jQuery));

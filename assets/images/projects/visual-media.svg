@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-labelledby="c9title c9desc">
+  <title id="c9title">Visual Media and Design - project cover</title>
+  <desc id="c9desc">Dark technical card showing a camera aperture, colour swatches and stacked photo frames.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191734"/><stop offset="1" stop-color="#0e0d19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a97afd" stop-opacity="0.26"/><stop offset="1" stop-color="#a97afd" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a97afd"/><stop offset="1" stop-color="#e91e63"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2196f3"/><stop offset="1" stop-color="#0e0d19"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <circle cx="860" cy="290" r="340" fill="url(#glow)"/>
+  <text x="1150" y="170" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="160" font-weight="800" fill="#ffffff" fill-opacity="0.05">09</text>
+
+  <g>
+    <!-- stacked photo cards -->
+    <g transform="rotate(-7 620 320)">
+      <rect x="470" y="150" width="300" height="340" rx="18" fill="#1b1930" stroke="#ffffff" stroke-opacity="0.12"/>
+      <rect x="490" y="170" width="260" height="222" rx="12" fill="url(#sky)"/>
+      <circle cx="620" cy="252" r="34" fill="#ffa500" fill-opacity="0.9"/>
+      <path d="M490 392l64-66 52 46 60-78 84 98v0H490z" fill="#121026" fill-opacity="0.75"/>
+      <rect x="490" y="410" width="150" height="12" rx="6" fill="#e8ecf6" fill-opacity="0.8"/>
+      <rect x="490" y="434" width="104" height="10" rx="5" fill="#9aa3b2" fill-opacity="0.6"/>
+      <rect x="490" y="458" width="128" height="10" rx="5" fill="#9aa3b2" fill-opacity="0.4"/>
+    </g>
+    <g transform="rotate(8 900 380)">
+      <rect x="790" y="210" width="260" height="300" rx="18" fill="#1b1930" stroke="#ffffff" stroke-opacity="0.12"/>
+      <rect x="808" y="228" width="224" height="190" rx="12" fill="#121026"/>
+      <g fill="none" stroke="url(#acc)" stroke-width="7">
+        <path d="M920 268v44M898 290h44M907 277l26 26M933 277l-26 26"/>
+      </g>
+      <rect x="808" y="436" width="140" height="12" rx="6" fill="#e8ecf6" fill-opacity="0.75"/>
+      <rect x="808" y="460" width="96" height="10" rx="5" fill="#9aa3b2" fill-opacity="0.55"/>
+    </g>
+
+    <!-- aperture -->
+    <g transform="translate(392 520)">
+      <circle r="76" fill="#121026" stroke="url(#acc)" stroke-width="6"/>
+      <g fill="none" stroke="#a97afd" stroke-width="6" stroke-linejoin="round" opacity="0.9">
+        <path d="M0 -58 42 -18 26 40 -26 40 -42 -18z"/>
+        <path d="M0 0 42 -18M0 0 26 40M0 0-26 40M0 0-42 -18M0 0 0 -58"/>
+      </g>
+    </g>
+
+    <!-- colour swatches -->
+    <g>
+      <rect x="506" y="520" width="66" height="66" rx="12" fill="#2196f3"/>
+      <rect x="584" y="520" width="66" height="66" rx="12" fill="#a97afd"/>
+      <rect x="662" y="520" width="66" height="66" rx="12" fill="#e91e63"/>
+      <rect x="740" y="520" width="66" height="66" rx="12" fill="#4caf50"/>
+      <text x="506" y="620" font-family="Consolas, Menlo, monospace" font-size="17" fill="#9aa3b2">brand &#183; palette &#183; visual identity</text>
+    </g>
+  </g>
+
+  <g>
+    <rect x="80" y="608" width="6" height="80" rx="3" fill="#2196f3"/>
+    <text x="112" y="650" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">Visual Media</text>
+    <text x="112" y="688" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#9aa3b2">Photography &#183; Branding &#183; Digital Design</text>
+  </g>
+</svg>

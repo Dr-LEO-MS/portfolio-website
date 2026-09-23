@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-labelledby="c5title c5desc">
+  <title id="c5title">Full Stack Web Platform - project cover</title>
+  <desc id="c5desc">Dark technical card showing stacked application layers, a database and a server node connected by data flows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191734"/><stop offset="1" stop-color="#0e0d19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a97afd" stop-opacity="0.28"/><stop offset="1" stop-color="#a97afd" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2196f3"/><stop offset="1" stop-color="#a97afd"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <circle cx="840" cy="290" r="340" fill="url(#glow)"/>
+  <text x="1150" y="170" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="160" font-weight="800" fill="#ffffff" fill-opacity="0.05">05</text>
+
+  <g>
+    <!-- browser / client -->
+    <rect x="470" y="128" width="196" height="120" rx="16" fill="#1b1930" stroke="#ffffff" stroke-opacity="0.10"/>
+    <rect x="488" y="150" width="160" height="12" rx="6" fill="#2196f3"/>
+    <rect x="488" y="176" width="120" height="9" rx="5" fill="#9aa3b2" fill-opacity="0.55"/>
+    <rect x="488" y="196" width="140" height="9" rx="5" fill="#9aa3b2" fill-opacity="0.35"/>
+    <rect x="488" y="216" width="88" height="18" rx="9" fill="#4caf50" fill-opacity="0.85"/>
+    <text x="470" y="272" font-family="Consolas, Menlo, monospace" font-size="18" fill="#9aa3b2">client</text>
+
+    <!-- api chip -->
+    <rect x="910" y="132" width="212" height="112" rx="16" fill="#1b1930" stroke="#2196f3" stroke-opacity="0.45"/>
+    <text x="934" y="180" font-family="Consolas, Menlo, monospace" font-size="22" fill="#2196f3">POST /api/v1</text>
+    <text x="934" y="212" font-family="Consolas, Menlo, monospace" font-size="18" fill="#9aa3b2">200 OK &#183; 38 ms</text>
+
+    <!-- data flow -->
+    <path d="M676 188h222" fill="none" stroke="#2196f3" stroke-width="4" stroke-dasharray="12 10"/>
+    <path d="M898 176l16 12-16 12z" fill="#2196f3"/>
+    <path d="M898 226H680" fill="none" stroke="#a97afd" stroke-width="4" stroke-dasharray="12 10"/>
+    <path d="M680 214l-16 12 16 12z" fill="#a97afd"/>
+
+    <!-- stacked layers -->
+    <g>
+      <path d="M520 470 700 402 880 470 700 538z" fill="#ffffff" fill-opacity="0.10"/>
+      <path d="M520 410 700 342 880 410 700 478z" fill="#a97afd" fill-opacity="0.42"/>
+      <path d="M520 350 700 282 880 350 700 418z" fill="url(#acc)"/>
+      <text x="700" y="360" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" fill-opacity="0.92">application</text>
+      <text x="700" y="424" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="17" fill="#ffffff" fill-opacity="0.72">business logic</text>
+      <text x="700" y="486" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="17" fill="#ffffff" fill-opacity="0.55">data access</text>
+    </g>
+
+    <!-- database -->
+    <g>
+      <ellipse cx="352" cy="326" rx="76" ry="28" fill="#4caf50" fill-opacity="0.85"/>
+      <path d="M276 326v112a76 28 0 0 0 152 0V326" fill="#4caf50" fill-opacity="0.35"/>
+      <ellipse cx="352" cy="438" rx="76" ry="28" fill="#4caf50" fill-opacity="0.55"/>
+      <ellipse cx="352" cy="326" rx="76" ry="28" fill="none" stroke="#4caf50" stroke-opacity="0.9" stroke-width="4"/>
+      <g stroke="#4caf50" stroke-opacity="0.5" stroke-width="3" fill="none">
+        <path d="M278 372a76 28 0 0 0 148 0M278 410a76 28 0 0 0 148 0"/>
+      </g>
+      <text x="352" y="500" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="18" fill="#9aa3b2">MySQL</text>
+    </g>
+
+    <!-- server node -->
+    <g>
+      <rect x="536" y="576" width="240" height="70" rx="14" fill="#1b1930" stroke="#ffffff" stroke-opacity="0.12"/>
+      <rect x="556" y="596" width="150" height="10" rx="5" fill="#9aa3b2" fill-opacity="0.6"/>
+      <rect x="556" y="618" width="110" height="10" rx="5" fill="#9aa3b2" fill-opacity="0.35"/>
+      <circle cx="748" cy="606" r="8" fill="#4caf50"/>
+      <circle cx="748" cy="632" r="8" fill="#2196f3"/>
+      <text x="800" y="618" font-family="Consolas, Menlo, monospace" font-size="18" fill="#9aa3b2">PHP 8 &#183; MySQL</text>
+    </g>
+  </g>
+
+  <g>
+    <rect x="80" y="608" width="6" height="80" rx="3" fill="#2196f3"/>
+    <text x="112" y="650" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">Full Stack Platform</text>
+    <text x="112" y="688" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#9aa3b2">PHP &#183; MySQL &#183; JavaScript &#183; REST</text>
+  </g>
+</svg>

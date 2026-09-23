@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-labelledby="c3title c3desc">
+  <title id="c3title">Weather Prediction App - project cover</title>
+  <desc id="c3desc">Dark technical card showing a forecast panel with a sun, cloud, rainfall bars and a temperature trend line.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191734"/><stop offset="1" stop-color="#0e0d19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffa500" stop-opacity="0.22"/><stop offset="1" stop-color="#ffa500" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#2196f3" stop-opacity="0.25"/><stop offset="1" stop-color="#2196f3"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2196f3"/><stop offset="1" stop-color="#ffa500"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <circle cx="900" cy="250" r="330" fill="url(#glow)"/>
+  <text x="1150" y="170" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="160" font-weight="800" fill="#ffffff" fill-opacity="0.05">03</text>
+
+  <g>
+    <rect x="420" y="104" width="620" height="448" rx="26" fill="#1b1930" stroke="#ffffff" stroke-opacity="0.08"/>
+    <rect x="444" y="128" width="572" height="400" rx="18" fill="#121026"/>
+
+    <text x="484" y="228" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="88" font-weight="800" fill="#ffffff">31&#176;</text>
+    <text x="486" y="266" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#9aa3b2">Partly cloudy &#183; Chennai</text>
+
+    <g fill="#ffa500">
+      <circle cx="900" cy="208" r="52"/>
+      <g stroke="#ffa500" stroke-width="7" stroke-linecap="round">
+        <path d="M900 118v-18M900 316v18M810 208h-18M1008 208h18"/>
+        <path d="M836 144l-13-13M964 144l13-13M836 272l-13 13M964 272l13 13"/>
+      </g>
+    </g>
+    <path d="M836 250a60 60 0 0 1 118-14 46 46 0 1 1 12 90H846a48 48 0 0 1-10-76z" fill="#e8ecf6" fill-opacity="0.94"/>
+    <g stroke="#2196f3" stroke-width="7" stroke-linecap="round">
+      <path d="M872 356v26M914 356v34M956 356v22"/>
+    </g>
+
+    <g fill="url(#bar)">
+      <rect x="484" y="330" width="34" height="66" rx="17"/>
+      <rect x="536" y="308" width="34" height="88" rx="17"/>
+      <rect x="588" y="340" width="34" height="56" rx="17"/>
+      <rect x="640" y="286" width="34" height="110" rx="17"/>
+      <rect x="692" y="322" width="34" height="74" rx="17"/>
+      <rect x="744" y="298" width="34" height="98" rx="17"/>
+    </g>
+    <g fill="#9aa3b2" font-family="Consolas, Menlo, monospace" font-size="17">
+      <text x="490" y="424">Mon</text><text x="542" y="424">Tue</text><text x="594" y="424">Wed</text>
+      <text x="646" y="424">Thu</text><text x="698" y="424">Fri</text><text x="750" y="424">Sat</text>
+    </g>
+
+    <path d="M478 494 566 470 654 484 742 452 830 462 918 428 992 436" fill="none" stroke="url(#acc)" stroke-width="6" stroke-linecap="round"/>
+    <g fill="#ffffff">
+      <circle cx="566" cy="470" r="6"/><circle cx="742" cy="452" r="6"/><circle cx="918" cy="428" r="6"/>
+    </g>
+  </g>
+
+  <g>
+    <rect x="80" y="608" width="6" height="80" rx="3" fill="#2196f3"/>
+    <text x="112" y="650" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">Weather Prediction</text>
+    <text x="112" y="688" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#9aa3b2">Python &#183; REST APIs &#183; Data Visualisation</text>
+  </g>
+</svg>

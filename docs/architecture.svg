@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 780" width="1280" height="780" role="img" aria-labelledby="archTitle archDesc">
+  <title id="archTitle">Portfolio website architecture</title>
+  <desc id="archDesc">Diagram of the repository: visitor-facing pages, shared assets, admin tooling and the contact form data flow through Web3Forms and browser storage.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191734"/><stop offset="1" stop-color="#0e0d19"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2196f3"/><stop offset="1" stop-color="#a97afd"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2196f3"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4caf50"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <style>
+      .t { font-family: Segoe UI, Helvetica, Arial, sans-serif; fill: #ffffff; font-size: 15px; font-weight: 700; }
+      .m { font-family: Consolas, Menlo, monospace; fill: #9aa3b2; font-size: 13px; }
+      .s { font-family: Segoe UI, Helvetica, Arial, sans-serif; fill: #9aa3b2; font-size: 13px; }
+      .card { fill: #1b1930; stroke: rgba(255,255,255,0.10); }
+      .chip { fill: #121026; stroke: rgba(255,255,255,0.08); }
+      .lane { fill: rgba(255,255,255,0.03); stroke: rgba(255,255,255,0.07); stroke-dasharray: 6 6; }
+      .head { font-family: Segoe UI, Helvetica, Arial, sans-serif; fill: #ffffff; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect width="1280" height="780" fill="url(#bg)"/>
+  <rect width="1280" height="780" fill="url(#grid)"/>
+  <text x="60" y="66" class="head" font-size="30">Portfolio website — architecture</text>
+  <text x="60" y="94" class="m">static HTML · CSS · JavaScript · no build step · GitHub Pages ready</text>
+  <rect x="60" y="112" width="1160" height="3" rx="2" fill="url(#accent)"/>
+
+  <rect class="lane" x="60" y="142" width="1160" height="150" rx="16"/>
+  <text x="82" y="172" class="head" font-size="16">1 · Visitor experience</text>
+
+  <rect class="card" x="82" y="188" width="330" height="86" rx="12"/>
+  <text x="100" y="216" class="t">index.html</text>
+  <text x="100" y="240" class="m">hero · about · services · projects</text>
+  <text x="100" y="260" class="m">skills · education · gallery · contact</text>
+
+  <rect class="card" x="432" y="188" width="320" height="86" rx="12"/>
+  <text x="450" y="216" class="t">Animated front end</text>
+  <text x="450" y="240" class="m">animations.css + custom-scripts.js</text>
+  <text x="450" y="260" class="m">reveals · tilt · lazy fade · progress</text>
+
+  <rect class="card" x="772" y="188" width="426" height="86" rx="12"/>
+  <text x="790" y="216" class="t">Responsive media</text>
+  <text x="790" y="240" class="m">assets/images/*.jpg · *.png · favicon set</text>
+  <text x="790" y="260" class="m">assets/images/projects/*.svg covers (1200x800)</text>
+  <rect class="lane" x="60" y="312" width="1160" height="212" rx="16"/>
+  <text x="82" y="342" class="head" font-size="16">2 · Contact form data flow</text>
+
+  <rect class="card" x="82" y="360" width="272" height="146" rx="12"/>
+  <text x="100" y="388" class="t">#contactForm</text>
+  <text x="100" y="412" class="m">inline validation</text>
+  <text x="100" y="432" class="m">honeypot + time trap</text>
+  <text x="100" y="452" class="m">45 s throttle</text>
+  <text x="100" y="472" class="m">optional hCaptcha</text>
+  <text x="100" y="492" class="m">contact-form.js</text>
+
+  <rect class="card" x="392" y="360" width="272" height="146" rx="12"/>
+  <text x="410" y="388" class="t">contact-config.js</text>
+  <text x="410" y="412" class="m">endpoint + access key</text>
+  <text x="410" y="432" class="m">limits · copy · captcha</text>
+  <text x="410" y="452" class="m">one place to tune</text>
+  <text x="410" y="472" class="m">form behaviour</text>
+  <text x="410" y="492" class="m">mailto fallback inbox</text>
+
+  <rect class="card" x="702" y="360" width="240" height="146" rx="12"/>
+  <text x="720" y="388" class="t">Web3Forms API</text>
+  <text x="720" y="412" class="m">POST JSON</text>
+  <text x="720" y="432" class="m">delivers to</text>
+  <text x="720" y="452" class="m">mssubhash07@</text>
+  <text x="720" y="472" class="m">gmail.com</text>
+  <text x="720" y="494" class="m" fill="#4caf50">no server to run</text>
+
+  <rect class="chip" x="980" y="360" width="218" height="146" rx="12"/>
+  <text x="998" y="388" class="t">Browser storage</text>
+  <text x="998" y="412" class="m">portfolio.pendingMessages</text>
+  <text x="998" y="432" class="m">portfolio.messageLog</text>
+  <text x="998" y="452" class="m">retry on reconnect</text>
+  <text x="998" y="476" class="m" fill="#ffb74d">never lose a lead</text>
+
+  <path d="M354 433H386" stroke="#2196f3" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M664 433H696" stroke="#2196f3" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M942 400H974" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <path d="M974 470H948" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowGreen)"/>
+
+  <rect class="lane" x="60" y="556" width="560" height="190" rx="16"/>
+  <text x="82" y="586" class="head" font-size="16">3 · Admin tooling (local)</text>
+
+  <rect class="card" x="82" y="602" width="248" height="124" rx="12"/>
+  <text x="100" y="630" class="t">Admin.html</text>
+  <text x="100" y="654" class="m">customize.js</text>
+  <text x="100" y="674" class="m">theme · layout · images</text>
+  <text x="100" y="694" class="m">projects · skills · SEO</text>
+  <text x="100" y="714" class="m">localStorage settings</text>
+
+  <rect class="card" x="352" y="602" width="248" height="124" rx="12"/>
+  <text x="370" y="630" class="t">admin-media.js</text>
+  <text x="370" y="654" class="m">Media Studio</text>
+  <text x="370" y="674" class="m">crop · rotate · filter</text>
+  <text x="370" y="694" class="m">WebP / JPEG export</text>
+  <text x="370" y="714" class="m">Messages inbox</text>
+
+  <rect class="chip" x="652" y="602" width="546" height="124" rx="12"/>
+  <text x="672" y="630" class="t">Generated artwork</text>
+  <text x="672" y="654" class="m">OG card 1200x630 · portrait 768x987 · 9 SVG covers</text>
+  <text x="672" y="674" class="m">favicon.ico + favicon-32.png + apple-icon.png from one master</text>
+  <text x="672" y="694" class="m">docs/architecture.svg · docs/contact-form-setup.md</text>
+  <text x="672" y="716" class="m" fill="#4caf50">built locally: PowerShell + System.Drawing, hand-written SVG</text>
+
+  <path d="M600 664H646" stroke="#2196f3" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M700 512V586" stroke="#4caf50" stroke-width="2.5" stroke-dasharray="8 8" marker-end="url(#arrowGreen)"/>
+  <path d="M186 560V596" stroke="#4caf50" stroke-width="2.5" stroke-dasharray="8 8" marker-end="url(#arrowGreen)"/>
+</svg>

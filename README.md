@@ -1,209 +1,302 @@
-# Subhash M — Portfolio Website
+<div align="center">
 
-A responsive, single-page portfolio website for **Subhash M**, a Python Full Stack Developer from Villupuram, Tamil Nadu. The site showcases projects, skills, education, and a contact form that submits via `mailto:` — so it works completely as a **static site** (no backend required) and can be hosted on GitHub Pages.
+<!-- Animated header banner -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:2C5364,100:00C9A7&height=220&section=header&text=Subhash%20M&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Python%20%7C%20Full%20Stack%20Developer&descAlignY=58&descAlign=50" width="100%"/>
 
-## Table of Contents
+<!-- Typing animation -->
+<a href="#">
+  <img src="https://readme-typing-svg.demolab.com/?lines=Building+full-stack+web+apps;Python+%7C+FastAPI+%7C+Django;AI-powered+integrations;Always+shipping+something+new;Chennai%2C+Tamil+Nadu%2C+India&font=Fira%20Code&center=true&width=600&height=50&color=00C9A7&vCenter=true&size=22&pause=1200"/>
+</a>
 
-- [Live Demo](#live-demo)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Architecture](#project-architecture)
-- [Getting Started](#getting-started)
-- [Configuration](#configuration)
-- [Project Sections](#project-sections)
-- [Contact Form](#contact-form)
-- [SEO & Accessibility](#seo--accessibility)
-- [Customization](#customization)
-- [Deployment](#deployment)
-- [License](#license)
-- [Credits](#credits)
+<br/>
 
-## Live Demo
+<!-- Badges -->
+<p>
+  <a href="https://dr-leo-ms.github.io/portfolio-website/"><img src="https://img.shields.io/badge/🌐_Live_Demo-View_Site-00C9A7?style=for-the-badge" alt="Live Demo"/></a>
+  <a href="https://github.com/Dr-LEO-MS/portfolio-website/stargazers"><img src="https://img.shields.io/github/stars/Dr-LEO-MS/portfolio-website?style=for-the-badge&color=yellow" alt="Stars"/></a>
+  <a href="https://github.com/Dr-LEO-MS/portfolio-website/network/members"><img src="https://img.shields.io/github/forks/Dr-LEO-MS/portfolio-website?style=for-the-badge&color=blue" alt="Forks"/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-purple?style=for-the-badge" alt="License"/></a>
+</p>
 
-The site is published at: **https://dr-leo-ms.github.io/portfolio-website/**
+<p>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Bootstrap_4-7952B3?style=flat-square&logo=bootstrap&logoColor=white"/>
+  <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat-square&logo=jquery&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GitHub_Pages-222222?style=flat-square&logo=github&logoColor=white"/>
+</p>
 
-## Features
+</div>
 
-- **Fully responsive** layout built on Bootstrap 4 with a custom responsive layer
-- **Dark-themed** design (`dark-vertion black-bg`) optimized for a developer portfolio
-- **Animated on scroll** using WOW.js + Animate.css
-- **One-page navigation** with smooth scrolling and active-link highlighting via jQuery One Page Nav
-- **Project gallery** with Fancybox lightbox previews
-- **Skills visualization** — responsive progress bars and circular progress indicators
-- **Static-friendly contact form** — uses `mailto:` so there's no server-side processing required
-- **SEO-optimized** with Open Graph / Twitter Card meta tags, structured JSON-LD data, `robots.txt`, and `sitemap.xml`
-- **Accessibility conscious** — skip link, keyboard focus styles, ARIA attributes, and semantic HTML
-- **Print styles** included for offline reading
+<br/>
 
-## Tech Stack
+## 🌟 Overview
 
-| Layer       | Technology                                      |
-|-------------|--------------------------------------------------|
-| Markup      | HTML5                                            |
-| Styling     | CSS3, Bootstrap 4, Animate.css                   |
-| Icons       | Font Awesome 4.7.0                               |
-| Scripting   | JavaScript (ES5+), jQuery                        |
-| Animation   | WOW.js, Animate.css                              |
-| Carousels   | Owl Carousel 2                                   |
-| Lightbox    | Fancybox                                          |
-| Progress    | circle-progress.js                               |
-| Navigation  | jQuery One Page Nav (jquery.nav.js)              |
-| Hosting     | GitHub Pages                                    |
+A **responsive, single-page portfolio website** for **Subhash M**, a Python Full Stack Developer from Villupuram, Tamil Nadu. Built to showcase projects, skills, and education — with a contact form that works entirely through `mailto:`, so **no backend is required**. Deployed effortlessly on **GitHub Pages**.
 
-## Project Architecture
+> 💡 Zero build step. Zero server. Just clone, customize, and deploy.
+
+<br/>
+
+## 📸 Preview
+
+<div align="center">
+<!-- Replace with actual screenshot/GIF paths once available -->
+<img src="assets/images/preview-desktop.png" alt="Desktop preview" width="80%"/>
+<br/><br/>
+<img src="assets/images/preview-mobile.png" alt="Mobile preview" width="30%"/>
+</div>
+
+<br/>
+
+## ✨ Features
+
+| | Feature | Description |
+|---|---|---|
+| 📱 | **Fully Responsive** | Built on Bootstrap 4 with a custom responsive layer for every screen size |
+| 🌙 | **Dark Themed** | Sleek `dark-vertion black-bg` design tailored for a developer portfolio |
+| 🎬 | **Scroll Animations** | Smooth entrance animations via WOW.js + Animate.css |
+| 🧭 | **One-Page Navigation** | Smooth scrolling with active-link highlighting |
+| 🖼️ | **Project Gallery** | Fancybox lightbox previews for project screenshots |
+| 📊 | **Skills Visualization** | Animated progress bars and circular skill indicators |
+| ✉️ | **Static Contact Form** | `mailto:`-based form — no server-side processing needed |
+| 🔍 | **SEO Optimized** | Open Graph, Twitter Cards, JSON-LD, `robots.txt`, `sitemap.xml` |
+| ♿ | **Accessible** | Skip links, keyboard focus states, ARIA attributes, semantic HTML |
+| 🖨️ | **Print Friendly** | Dedicated print stylesheet for offline reading |
+
+<br/>
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+| Layer | Technology |
+|:---:|:---:|
+| **Markup** | HTML5 |
+| **Styling** | CSS3 · Bootstrap 4 · Animate.css |
+| **Icons** | Font Awesome 4.7.0 |
+| **Scripting** | JavaScript (ES5+) · jQuery |
+| **Animation** | WOW.js · Animate.css |
+| **Carousel** | Owl Carousel 2 |
+| **Lightbox** | Fancybox |
+| **Progress** | circle-progress.js |
+| **Navigation** | jQuery One Page Nav |
+| **Hosting** | GitHub Pages |
+
+</div>
+
+<br/>
+
+## 🗂️ Project Architecture
 
 ```
+
 portfolio-website/
 ├── index.html              # Single-page portfolio markup
-├── robots.txt              # Search-engine crawl directives + sitemap reference
+├── robots.txt              # Crawl directives + sitemap reference
 ├── sitemap.xml             # Sitemap for search engines
-├── .gitignore              # Ignores OS/editor noise and local tooling files
-├── README.md               # This file
+├── .gitignore              # Ignores OS/editor noise
+├── README.md               # You are here 📍
 │
 ├── assets/
 │   ├── css/
 │   │   ├── styles.css              # Core template styles
 │   │   ├── responsive.css          # Breakpoint overrides
-│   │   ├── custom.css              # Project-level polish (accessibility, print, fixes)
-│   │   └── colors/
-│   │       ├── blue-munsell.css    # Active accent palette (swappable)
+│   │   ├── custom.css              # Accessibility + print + fixes
+│   │   └── colors/                 # Swappable accent palettes
+│   │       ├── blue-munsell.css    ⭐ active
 │   │       ├── blue.css
 │   │       ├── green.css
 │   │       ├── orange.css
 │   │       ├── purple.css
 │   │       ├── slate.css
 │   │       └── yellow.css
+│   │
 │   ├── js/
-│   │   └── custom-scripts.js       # All interactive behavior (guarded for static use)
+│   │   └── custom-scripts.js       # All interactive behavior
 │   │
 │   ├── plugins/
-│   │   ├── css/                    # Plugin stylesheets (Bootstrap, Owl, Animate, Fancybox)
-│   │   └── js/                     # Plugin scripts (jQuery, Popper, Bootstrap, Owl, WOW, etc.)
+│   │   ├── css/                    # Bootstrap, Owl, Animate, Fancybox
+│   │   └── js/                     # jQuery, Popper, Bootstrap, WOW, etc.
 │   │
 │   ├── icons/                      # Font Awesome assets
-│   └── images/                     # Hero photo, about illustration, project screenshots, favicon
+│   └── images/                     # Photos, illustrations, favicon
 │       └── portfolio/              # Project gallery images
 │
-└── demo/                           # Demo-only color switcher (not used in production)
+└── demo/                           # Demo-only color switcher
+
 ```
 
-## Getting Started
+<br/>
+
+## 🚀 Getting Started
 
 ### Prerequisites
+No build tools or package managers required — just a modern browser and (optionally) a local static server.
 
-No build step or package manager is needed. The site is plain HTML, CSS, and JavaScript.
+### Run Locally
 
-- A modern browser (Chrome, Firefox, Edge, Safari)
-- A web server (for local preview, any static server works)
+**Clone the repo**
+```
 
-### Local Preview
+git clone https://github.com/Dr-LEO-MS/portfolio-website.git
+cd portfolio-website
 
-Because the contact form and plugins read files relative to the project root, it's best to preview with a local server rather than `file://`.
+```
 
-Using Python:
+**Serve with Python**
+```
 
-```bash
-cd /path/to/portfolio-website
 python -m http.server 8000
-# Then open http://localhost:8000 in your browser
+
+# open [http://localhost:8000](http://localhost:8000)
+
 ```
 
-Or with Node.js (if you have `http-server` installed):
+**...or with Node.js**
+```
 
-```bash
 npx http-server .
+
 ```
 
-## Configuration
+> ⚠️ Prefer a local server over opening `index.html` directly — the contact form and plugins load assets relative to the project root.
 
-Before deploying, update these values for your own use:
+<br/>
 
-1. **Personal details** — `index.html`
-   - `<title>`, `<meta name="description">`, `<meta name="author">`
-   - Open Graph and Twitter Card tags
-   - Name, role, contact links, and About text (section headings and paragraphs)
-   - Projects section, Skills, Education, and Contact/Footer details
+## ⚙️ Configuration
 
-2. **Color accent** — `index.html`
-   - Change `assets/css/colors/blue-munsell.css` to one of: `blue`, `green`, `blue-munsell`, `orange`, `purple`, `slate`, or `yellow`.
+Before deploying your own copy, update the following:
 
-3. **Email recipient** — `index.html`
-   - The contact form `action` and the email links point to `mailto:mssubhash07@gmail.com`. Update all occurrences for your own address.
+<details>
+<summary><strong>1️⃣ Personal Details</strong> — <code>index.html</code></summary>
+<br/>
 
-4. **Canonical URL & sitemap** — `index.html`, `robots.txt`, `sitemap.xml`
-   - Point these to your actual GitHub Pages / domain URL.
+- `<title>`, `<meta name="description">`, `<meta name="author">`
+- Open Graph & Twitter Card tags
+- Name, role, contact links, About text
+- Projects, Skills, Education, and Contact/Footer content
+</details>
 
-## Project Sections
+<details>
+<summary><strong>2️⃣ Accent Color</strong> — <code>index.html</code></summary>
+<br/>
 
-The single-page `index.html` is organized into clearly commented sections:
+Swap the stylesheet link in `<head>` to one of:
+`blue` · `green` · `blue-munsell` · `orange` · `purple` · `slate` · `yellow`
+</details>
 
-| Section ID      | Anchor    | Description                                         |
-|-----------------|-----------|-----------------------------------------------------|
-| `#mh-header`    | Header    | Sticky navigation bar with smooth-scroll anchors    |
-| `#mh-home`      | Home      | Hero headline, tagline, quick contact, portrait     |
-| `#mh-about`     | About     | Bio, skills overview, and tech tags                 |
-| `#mh-service`   | Services  | Service cards                                       |
-| `#mh-portfolio` | Portfolio | Featured projects with Fancybox image previews      |
-| `#mh-skills`    | Skills    | Technical skill bars and professional skill circles |
-| `#mh-education` | Education | Academic history and certifications                 |
-| `#mh-contact`   | Contact   | Contact details + inline-validated `mailto:` form   |
+<details>
+<summary><strong>3️⃣ Email Recipient</strong> — <code>index.html</code></summary>
+<br/>
 
-## Contact Form
+Update every `mailto:` occurrence to point to your own email address.
+</details>
 
-The form uses a `mailto:` action with `enctype="text/plain"`, so submitting it opens the visitor's default email client pre-filled with their message. JavaScript (`custom-scripts.js`) adds:
+<details>
+<summary><strong>4️⃣ Canonical URL & Sitemap</strong> — <code>index.html</code>, <code>robots.txt</code>, <code>sitemap.xml</code></summary>
+<br/>
 
-- Inline validation via `validator.min.js` (graceful fallback if the plugin fails to load)
-- A confirmation message: *"Opening your email app - press Send there to deliver your message."*
-- Keyboard-accessible markup (`aria-label`, `sr-only` labels, `required` attributes)
+Point these to your live GitHub Pages URL or custom domain.
+</details>
 
-There is **no `process.php`**, `email.php`, or any server-side script.
+<br/>
 
-## SEO & Accessibility
+## 🧭 Page Sections
 
-- Open Graph and Twitter Card meta tags for rich link previews
-- `application/ld+json` structured data (`Person` schema) for search engines
-- `robots.txt` and `sitemap.xml` for discoverability
-- Semantic HTML sectioning with proper heading hierarchy
-- Skip-link for keyboard users, visible focus styles, and ARIA attributes
-- Print stylesheet for offline reading
+| Section | Anchor | Description |
+|---|---|---|
+| `#mh-header` | Header | Sticky nav bar with smooth-scroll anchors |
+| `#mh-home` | Home | Hero headline, tagline, quick contact, portrait |
+| `#mh-about` | About | Bio, skills overview, tech tags |
+| `#mh-service` | Services | Service cards |
+| `#mh-portfolio` | Portfolio | Featured projects with Fancybox previews |
+| `#mh-skills` | Skills | Skill bars and circular indicators |
+| `#mh-education` | Education | Academic history and certifications |
+| `#mh-contact` | Contact | Contact details + validated `mailto:` form |
 
-## Customization
+<br/>
 
-### Changing the Accent Color
+## ✉️ Contact Form
 
-One color palette is loaded at a time. Open `index.html` and change the line in the `<head>`:
+The form submits via `mailto:` with `enctype="text/plain"` — opening the visitor's default email client, pre-filled with their message. `custom-scripts.js` adds:
 
+- ✅ Inline validation via `validator.min.js` (graceful fallback if unavailable)
+- 💬 Confirmation prompt: *"Opening your email app — press Send there to deliver your message."*
+- ⌨️ Keyboard-accessible markup (`aria-label`, `sr-only`, `required`)
+
+> There is **no** `process.php`, `email.php`, or any server-side script — this stays 100% static.
+
+<br/>
+
+## 🔍 SEO & Accessibility
+
+- Open Graph + Twitter Card meta tags for rich link previews
+- `application/ld+json` structured data (`Person` schema)
+- `robots.txt` + `sitemap.xml` for discoverability
+- Semantic HTML with proper heading hierarchy
+- Skip links, visible focus states, ARIA attributes
+- Dedicated print stylesheet
+
+<br/>
+
+## 🎨 Customization
+
+**Change accent color** — edit the stylesheet reference in `index.html`:
 ```html
 <link rel="stylesheet" href="assets/css/colors/blue-munsell.css">
 ```
 
-Available options: `blue.css`, `green.css`, `blue-munsell.css`, `orange.css`, `purple.css`, `slate.css`, `yellow.css`.
+**Change typography** — swap the Google Fonts `<link>` in `<head>` (default: Roboto).
 
-### Typography
+<br/>
 
-Fonts are loaded from Google Fonts in the `<head>` of `index.html`. Replace the Roboto family link if you prefer a different font.
+## 📦 Deployment (GitHub Pages)
 
-## Deployment
+```mermaid
+flowchart LR
+    A[Push to GitHub] --> B[Settings → Pages]
+    B --> C[Select main branch]
+    C --> D[🚀 Live on GitHub Pages]
+```
 
-The site is designed for GitHub Pages:
+1. Push this repository to GitHub.
+2. Go to **Settings → Pages**.
+3. Set the source branch to `main` (or `master`).
+4. GitHub Pages automatically serves `index.html`.
 
-1. Push the repository to GitHub (`https://github.com/Dr-LEO-MS/portfolio-website`).
-2. In **Settings → Pages**, set the source to the `main` (or `master`) branch.
-3. GitHub Pages serves `index.html` automatically.
+> Don't forget to update the canonical URL, Open Graph image, sitemap, and `robots.txt` if you fork this project.
 
-The canonical URL, Open Graph image, sitemap, and robots.txt all point to the live URL and should be updated if you fork the project.
+<br/>
 
-## License
+## 📜 License
 
-This project is based on the **Martan** HTML portfolio template, which is distributed under the MIT License. The custom content (text, images, skill data) is original to Subhash M.
+Built on the **Martan** HTML portfolio template, distributed under the **MIT License**.
+All custom content (text, images, skill data) is original to Subhash M.
 
-## Credits
+<br/>
 
-- **Template foundation**: [Martan](https://html.design/) HTML5 portfolio template
-- **Icons**: [Font Awesome 4.7.0](https://fontawesome.com/)
-- **Carousel**: [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
-- **Lightbox**: [Fancybox](https://fancyapps.com/fancybox-3/)
-- **Animations**: [Animate.css](https://animate.style/) + [WOW.js](https://github.com/mat-sz/iziToast) (via `wow.min.js`)
-- **Progress circles**: [circle-progress](https://github.com/komarovsoft/circle-progress)
-- **Fonts**: [Google Fonts — Roboto](https://fonts.google.com/specimen/Roboto)
+## 🙌 Credits
 
+| Resource | Author |
+|---|---|
+| Template foundation | [Martan](https://html.design/) |
+| Icons | [Font Awesome 4.7.0](https://fontawesome.com/) |
+| Carousel | [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/) |
+| Lightbox | [Fancybox](https://fancyapps.com/fancybox-3/) |
+| Animations | [Animate.css](https://animate.style/) + WOW.js |
+| Progress circles | [circle-progress](https://github.com/komarovsoft/circle-progress) |
+| Fonts | [Google Fonts — Roboto](https://fonts.google.com/specimen/Roboto) |
+
+<br/>
+
+<div align="center">
+
+### 📫 Let's Connect
+
+<a href="mailto:mssubhash07@gmail.com"><img src="https://img.shields.io/badge/Email-mssubhash07%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C9A7,100:0F2027&height=100&section=footer"/>
+
+</div>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>404 Page Not Found | Subhash M</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="The page you were looking for swung away. Page not found on Subhash M's portfolio.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#100e17">
+
+    <!-- FAV AND ICONS -->
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-icon.png">
+
+    <script>document.documentElement.className += " js";</script>
+
+    <!-- Google Font (preconnect first so the font request starts earlier) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/icons/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/plugins/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <!-- Accent colour (default palette) -->
+    <link rel="stylesheet" href="assets/css/colors/blue-munsell.css" title="blue-munsell"
+        data-style="color-theme">
+</head>
+
+<body class="dark-vertion black-bg">
+
+    <main class="page-404" id="main-content">
+        <!-- The spider swing-in and the "404 / PAGE NOT FOUND" headline are all
+             part of this single Lottie animation -->
+        <div class="nf-lottie" id="nf-lottie" role="img"
+            aria-label="Animated spider lowering on a thread beside a large 404 — page not found"></div>
+
+        <p class="nf-tagline">The page you were looking for <em>swung away</em> — or never existed.</p>
+
+        <div class="nf-actions">
+            <a class="btn btn-primary" href="index.html"><i class="fa fa-home" aria-hidden="true"></i>
+                Back to home</a>
+            <a class="btn" href="javascript:history.back()"><i class="fa fa-arrow-left"
+                    aria-hidden="true"></i> Go back</a>
+        </div>
+    </main>
+
+    <!-- Lottie player + embedded spider animation -->
+    <script src="assets/js/vendor/lottie.min.js"></script>
+    <script src="assets/js/lottie-404-data.js"></script>
+    <script>
+        (function () {
+            var mount = document.getElementById("nf-lottie");
+            if (!mount || typeof window.lottie === "undefined" || !window.LOTTIE_404_DATA) {
+                return;
+            }
+
+            var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            var animation = window.lottie.loadAnimation({
+                container: mount,
+                renderer: "svg",
+                loop: false,
+                autoplay: !reduce,
+                animationData: window.LOTTIE_404_DATA,
+                rendererSettings: { preserveAspectRatio: "xMidYMid meet" }
+            });
+
+            if (reduce) {
+                animation.addEventListener("DOMLoaded", function () {
+                    // hold on the finished frame: spider resting, text visible
+                    animation.goToAndStop(animation.totalFrames - 1, true);
+                });
+            }
+        })();
+    </script>
+
+</body>
+
+</html>

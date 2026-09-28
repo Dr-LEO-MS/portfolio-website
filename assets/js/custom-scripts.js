@@ -30,6 +30,38 @@
   });
 
   // =====================
+  // Loader Lottie animation (silent fallback: the CSS sweep line keeps
+  // running until the player reports it has rendered its first frame)
+  // =====================
+  function initLoaderLottie() {
+    var container = document.getElementById("loader-lottie");
+    if (!container || typeof window.lottie === "undefined" || !window.LOTTIE_LOADER_DATA) {
+      return;
+    }
+
+    try {
+      var animation = window.lottie.loadAnimation({
+        container: container,
+        renderer: "svg",
+        loop: true,
+        autoplay: !prefersReducedMotion,
+        animationData: window.LOTTIE_LOADER_DATA,
+        rendererSettings: { preserveAspectRatio: "xMidYMid meet" }
+      });
+
+      animation.addEventListener("DOMLoaded", function() {
+        document.documentElement.classList.add("has-lottie");
+        if (prefersReducedMotion) {
+          // show the finished frame instead of moving
+          animation.goToAndStop(animation.totalFrames - 1, true);
+        }
+      });
+    } catch (err) {
+      // sweep-line fallback stays in place
+    }
+  }
+
+  // =====================
   // Scroll-Triggered Reveals (replaces WOW.js)
   // =====================
   function initRevealObserver() {
@@ -825,6 +857,7 @@
   // Init all animation systems on DOMContentLoaded
   // =====================
   $(function() {
+    initLoaderLottie();
     initSettingsSync();
     initRevealObserver();
     initTitleObserver();

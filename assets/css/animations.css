@@ -17,17 +17,43 @@
 }
 
 /* ==========================================================================
-   Page Loader - Modern
+   Page Loader - full-screen black screen
+   Pinned to every edge of the viewport and painted pure black, independent of
+   the light/dark theme, and stacked above the theme switcher. custom-scripts.js
+   adds .loaded on window load; the sweep line itself is pure CSS.
    ========================================================================== */
 .section-loader {
   position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: #100e17;
-  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: 9999999; /* above the theme switcher (z-index 99999) */
+  background: #000;
+  display: none; /* hidden by default so no-JS visitors are never blocked */
   align-items: center;
   justify-content: center;
   transition: opacity 0.6s var(--anim-ease), visibility 0.6s;
+}
+
+/* Only show the overlay when scripting is on (head adds .js to <html>). */
+.js .section-loader {
+  display: flex;
+}
+
+/* While the loading screen is up: no root scrollbar (a fixed overlay cannot
+   paint over the native scrollbar, which would leave a strip of page showing
+   down the right-hand edge) and a black canvas behind it, so the translucent
+   dark theme cannot lighten the black panel. Screen only — printing must not
+   inherit a black canvas. */
+@media screen {
+  html.js:has(.section-loader:not(.loaded)) {
+    overflow: hidden;
+    background-color: #000;
+  }
 }
 
 .section-loader.loaded {
@@ -36,46 +62,36 @@
   pointer-events: none;
 }
 
-.loader {
-  position: relative;
-  width: 60px;
-  height: 60px;
+/* Lottie centerpiece for the loader (initialised in custom-scripts.js).
+   Square stage to match the 32x32 source animation; sized so the artwork reads
+   as a splash on a full-screen black panel. */
+.loader-lottie {
+  --loader-stage: clamp(200px, 56vmin, 420px);
+  width: var(--loader-stage);
+  height: var(--loader-stage);
 }
 
-.loader::before,
-.loader::after {
+/* Fallback sweep line across the top edge — shown only while the Lottie
+   player is unavailable; custom-scripts.js adds .has-lottie once it renders. */
+.js:not(.has-lottie) .section-loader::after {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  border-top-color: var(--accent-color, #2196F3);
+  top: 0;
+  left: 0;
+  width: 42%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-color, #2196F3) 50%,
+    transparent 100%
+  );
+  animation: loader-sweep 1.15s ease-in-out infinite;
 }
 
-.loader::before {
-  animation: loader-spin 1s linear infinite;
-}
-
-.loader::after {
-  inset: 8px;
-  border-top-color: transparent;
-  border-right-color: var(--accent-color, #2196F3);
-  animation: loader-spin 0.6s linear infinite reverse;
-}
-
-@keyframes loader-spin {
-  to { transform: rotate(360deg); }
-}
-
-.loader-progress {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 2px;
-  text-transform: uppercase;
+@keyframes loader-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
 }
 
 /* ==========================================================================
@@ -321,13 +337,25 @@
 /* ==========================================================================
    Skill Bar Animations
    ========================================================================== */
+/* Fill transition — the target width itself is written inline by initSkillBars(). */
 .progressBar .percentagem {
-  width: 0 !important;
   transition: width 1.5s var(--anim-ease);
 }
 
-.progressBar.animated .percentagem {
-  /* width set by JS to target value */
+/* Pre-animation state: hold the fill at zero until JS reveals it, so the static
+   inline widths don't flash before initSkillBars() runs. Scoped to .js so no-JS
+   visitors keep the real values, and to :not(.animated) so the !important stops
+   matching the moment the bar is revealed. (Previously this !important applied
+   even after reveal and pinned every bar at 0%.) */
+.js .progressBar:not(.animated) .percentagem {
+  width: 0 !important;
+}
+
+/* Reduced motion: snap to the final width instead of easing. */
+@media (prefers-reduced-motion: reduce) {
+  .progressBar .percentagem {
+    transition: none;
+  }
 }
 
 /* Circle progress entrance */
@@ -681,6 +709,12 @@ section {
 
   .section-loader {
     transition: none;
+  }
+
+  /* No sweep under reduced motion — the Lottie still shows one static frame */
+  .section-loader::after {
+    animation: none !important;
+    display: none !important;
   }
 
   .section-loader.loaded {

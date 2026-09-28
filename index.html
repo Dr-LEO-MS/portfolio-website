@@ -110,9 +110,11 @@
     <!-- Lets keyboard / screen reader users jump straight to the content -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <!-- Start Loader -->
-    <div class="section-loader">
-        <div class="loader"></div>
+    <!-- Start Loader: full-screen black loading screen with the Lottie
+         animation (custom-scripts.js). If the player ever fails, the CSS sweep
+         line is the automatic fallback. -->
+    <div class="section-loader" aria-hidden="true">
+        <div class="loader-lottie" id="loader-lottie"></div>
     </div>
     <!-- End Loader -->
 
@@ -1064,6 +1066,9 @@
     <script src="assets/plugins/js/jquery.nav.js"></script>
     <!-- Fancybox js (project image lightbox) -->
     <script src="assets/plugins/js/jquery.fancybox.min.js"></script>
+    <!-- Lottie player + embedded loader animation -->
+    <script src="assets/js/vendor/lottie.min.js"></script>
+    <script src="assets/js/lottie-loader-data.js"></script>
     <!-- Custom Scripts-->
     <script src="assets/js/custom-scripts.js"></script>
     <!-- Style & Theme Switcher JS -->

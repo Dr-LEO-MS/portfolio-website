@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-labelledby="c10title c10desc">
+  <title id="c10title">Cyra AI Assistant - project cover</title>
+  <desc id="c10desc">Dark technical card showing a chat window with user and assistant message bubbles, typing dots and a response waveform.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191734"/><stop offset="1" stop-color="#0e0d19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#8e6bff" stop-opacity="0.26"/><stop offset="1" stop-color="#8e6bff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2196f3"/><stop offset="1" stop-color="#e91e63"/>
+    </linearGradient>
+    <linearGradient id="bubble" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2196f3" stop-opacity="0.85"/><stop offset="1" stop-color="#8e6bff" stop-opacity="0.85"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <circle cx="880" cy="260" r="340" fill="url(#glow)"/>
+  <text x="1150" y="170" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="160" font-weight="800" fill="#ffffff" fill-opacity="0.05">10</text>
+
+  <g>
+    <rect x="420" y="104" width="620" height="448" rx="26" fill="#1b1930" stroke="#ffffff" stroke-opacity="0.08"/>
+    <rect x="444" y="128" width="572" height="400" rx="18" fill="#121026"/>
+
+    <circle cx="484" cy="164" r="9" fill="#ff5f57"/>
+    <circle cx="512" cy="164" r="9" fill="#febc2e"/>
+    <circle cx="540" cy="164" r="9" fill="#28c840"/>
+    <text x="988" y="172" text-anchor="end" font-family="Consolas, Menlo, monospace" font-size="19" fill="#9aa3b2">cyra &#183; online</text>
+
+    <rect x="676" y="206" width="308" height="72" rx="20" fill="url(#bubble)"/>
+    <rect x="700" y="228" width="240" height="10" rx="5" fill="#ffffff" fill-opacity="0.85"/>
+    <rect x="700" y="250" width="164" height="10" rx="5" fill="#ffffff" fill-opacity="0.55"/>
+
+    <circle cx="490" cy="330" r="22" fill="url(#acc)"/>
+    <path d="M490 318l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#ffffff"/>
+    <rect x="524" y="298" width="360" height="104" rx="20" fill="#221f3d" stroke="#ffffff" stroke-opacity="0.07"/>
+    <rect x="548" y="322" width="300" height="10" rx="5" fill="#c9cee0"/>
+    <rect x="548" y="344" width="256" height="10" rx="5" fill="#8f96ad"/>
+    <rect x="548" y="366" width="196" height="10" rx="5" fill="#6f7690"/>
+
+    <g fill="#9aa3b2">
+      <circle cx="556" cy="452" r="8"/><circle cx="584" cy="452" r="8" fill-opacity="0.6"/><circle cx="612" cy="452" r="8" fill-opacity="0.3"/>
+    </g>
+    <rect x="652" y="430" width="332" height="44" rx="22" fill="#1b1930" stroke="url(#acc)" stroke-width="2"/>
+    <text x="676" y="458" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="19" fill="#6f7690">Ask Cyra anything&#8230;</text>
+
+    <g stroke="url(#acc)" stroke-width="6" stroke-linecap="round">
+      <path d="M760 508v-16M784 516v-32M808 524v-48M832 512v-24M856 520v-40M880 506v-12M904 514v-28"/>
+    </g>
+  </g>
+
+  <g>
+    <rect x="80" y="608" width="6" height="80" rx="3" fill="#2196f3"/>
+    <text x="112" y="650" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">Cyra AI Assistant</text>
+    <text x="112" y="688" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#9aa3b2">Python &#183; FastAPI &#183; LLM APIs</text>
+  </g>
+</svg>

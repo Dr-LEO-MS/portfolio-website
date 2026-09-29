@@ -580,6 +580,55 @@
   // =====================
   // Dynamic Settings & Live Customizer Support
   // =====================
+  // The gallery cards are static markup, so the order saved in the admin panel
+  // (drag the project cards there) is applied to the cards already in the page by
+  // matching their image. Cards the settings do not know about keep their place.
+  function applyProjectOrder(projectsList) {
+    var container = document.querySelector(".portfolioContainer");
+    if (!container || !Array.isArray(projectsList) || projectsList.length < 2) return;
+
+    function fileName(path) {
+      return String(path || "").split("?")[0].split("/").pop().toLowerCase();
+    }
+
+    var ranks = {};
+    projectsList.forEach(function (project, index) {
+      var key = fileName(project && (project.img || project.image));
+      if (key && !ranks.hasOwnProperty(key)) ranks[key] = index;
+    });
+
+    var items = Array.prototype.filter.call(container.children, function (el) {
+      return el.classList && el.classList.contains("grid-item");
+    });
+    if (items.length < 2) return;
+
+    var ranked = items.map(function (item, position) {
+      var img = item.querySelector("img");
+      var key = fileName(item.getAttribute("data-project-img") || (img && img.getAttribute("src")));
+      return {
+        item: item,
+        rank: ranks.hasOwnProperty(key) ? ranks[key] : projectsList.length + position,
+        position: position
+      };
+    });
+
+    var sorted = ranked.slice().sort(function (a, b) {
+      return a.rank === b.rank ? a.position - b.position : a.rank - b.rank;
+    });
+
+    var moved = sorted.some(function (entry, index) { return entry.item !== items[index]; });
+    if (!moved) return;
+
+    sorted.forEach(function (entry) { container.appendChild(entry.item); });
+
+    // Isotope caches its layout. On a normal load the settings are applied before
+    // it is initialised, but a live update from the admin panel arrives later.
+    if (window.jQuery && typeof window.jQuery(container).isotope === "function" &&
+        window.jQuery(container).data("isotope")) {
+      window.jQuery(container).isotope("layout");
+    }
+  }
+
   function applyPortfolioSettings(settings) {
     if (!settings) return;
     var root = document.documentElement;
@@ -687,6 +736,11 @@
           }
         }
       }
+    }
+
+    // Project order coming from the admin panel
+    if (settings.projectsList) {
+      applyProjectOrder(settings.projectsList);
     }
 
     // Topbar & Header Info Updates

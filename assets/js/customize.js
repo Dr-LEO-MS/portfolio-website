@@ -158,8 +158,22 @@
         desc: 'Design assets, iconography and visual media created for modern web interfaces.',
         featured: false,
         gallery: true
+      },
+      {
+        id: 'cyra-ai',
+        title: 'Cyra AI Assistant',
+        category: 'Web Applications',
+        categoryFilter: 'web-app',
+        subtitle: 'Python · FastAPI · LLM APIs',
+        img: 'assets/images/projects/cyra-ai.svg',
+        link: 'https://github.com/Dr-LEO-MS',
+        desc: 'Conversational AI assistant with streamed answers, prompt templates and tool calling.',
+        featured: false,
+        gallery: false
       }
     ],
+    // Default projects already offered to this browser, so a deleted one stays deleted
+    seenProjectIds: [],
     techSkills: [
       { name: 'Python', percentage: 90 },
       { name: 'HTML5 / CSS3', percentage: 95 },
@@ -266,6 +280,11 @@
       currentSettings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
     }
 
+    // A project added to DEFAULT_SETTINGS after the settings were first saved would
+    // never appear, because a saved array replaces the defaults wholesale — so the
+    // new ones are merged in once, while projects the owner deleted stay gone.
+    if (syncDefaultProjects()) saveSettings();
+
     // Sanitize section order so gallery is always after education
     if (currentSettings.layout && currentSettings.layout.sectionOrder) {
       var defaultOrder = ['home', 'about', 'services', 'portfolio', 'skills', 'education', 'gallery', 'cta', 'contact'];
@@ -299,6 +318,26 @@
     } catch (e) {
       console.error('Failed to save settings:', e);
     }
+  }
+
+  /* Merge any default project the browser has not been offered yet into the saved
+     list (appended, so the owner's own ordering is kept). Projects already listed in
+     seenProjectIds are never re-added, which keeps a deliberate delete final. */
+  function syncDefaultProjects() {
+    var defaults = DEFAULT_SETTINGS.projectsList || [];
+    var list = currentSettings.projectsList || [];
+    var seen = currentSettings.seenProjectIds || [];
+    var missing = defaults.filter(function (def) {
+      if (seen.indexOf(def.id) !== -1) return false;
+      for (var i = 0; i < list.length; i++) {
+        if (list[i] && list[i].id === def.id) return false;
+      }
+      return true;
+    });
+    currentSettings.seenProjectIds = defaults.map(function (def) { return def.id; });
+    if (!missing.length) return false;
+    currentSettings.projectsList = list.concat(missing);
+    return true;
   }
 
   function deepMerge(target, source) {
@@ -534,6 +573,8 @@
       var subtitle = proj.subtitle || '';
 
       card.innerHTML = `
+        <span class="drag-grip" title="Drag to reorder" aria-hidden="true"><i class="fa fa-arrows"></i></span>
+        <span class="order-badge" data-order-badge>#${index + 1}</span>
         <div class="project-thumb-box">
           <img src="${imgPath}" alt="${proj.title}" onerror="this.src='assets/images/projects/resume-ai.svg'">
         </div>
@@ -558,6 +599,10 @@
           </button>
         </div>
       `;
+
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('title', 'Drag to reorder, or focus the card and use the arrow keys');
+      card.setAttribute('aria-label', (proj.title || 'Project') + ' — position ' + (index + 1) + ' of ' + list.length);
 
       container.appendChild(card);
     });
@@ -593,6 +638,17 @@
         }
       });
     });
+
+    // Whatever order the cards end up in is the order of the projects section.
+    setupDragAndDrop(container, {
+      itemSelector: '.dynamic-project-card',
+      onReorder: function (items, previousIndexes) {
+        var next = reorderArrayLikeDom(currentSettings.projectsList, previousIndexes);
+        if (!next) return;
+        currentSettings.projectsList = next;
+        saveSettings();
+      }
+    });
   }
 
   // ==========================================================================
@@ -613,10 +669,12 @@
       var card = document.createElement('div');
       card.className = 'dynamic-skill-card';
       card.innerHTML = `
+        <span class="drag-grip" title="Drag to reorder" aria-hidden="true"><i class="fa fa-arrows"></i></span>
+        <span class="order-badge" data-order-badge>#${index + 1}</span>
         <div class="skill-info">
           <div class="skill-title-row">
             <strong>${sk.name}</strong>
-            <span id="tech-val-${index}">${sk.percentage}%</span>
+            <span data-skill-value>${sk.percentage}%</span>
           </div>
           <div class="slider-row" style="margin: 4px 0 0;">
             <input type="range" class="tech-skill-slider" data-index="${index}" min="10" max="100" step="5" value="${sk.percentage}">
@@ -626,6 +684,10 @@
           <i class="fa fa-times" style="color: var(--danger-color);"></i>
         </button>
       `;
+      card.setAttribute('data-index', index);
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('title', 'Drag to reorder, or focus the card and use the arrow keys');
+      card.setAttribute('aria-label', (sk.name || 'Skill') + ' — position ' + (index + 1) + ' of ' + skills.length);
       container.appendChild(card);
     });
 
@@ -633,7 +695,8 @@
       slider.addEventListener('input', function () {
         var idx = parseInt(this.getAttribute('data-index'), 10);
         var val = parseInt(this.value, 10);
-        document.getElementById('tech-val-' + idx).textContent = val + '%';
+        var card = this.closest('.dynamic-skill-card');
+        if (card) card.querySelector('[data-skill-value]').textContent = val + '%';
         if (currentSettings.techSkills[idx]) {
           currentSettings.techSkills[idx].percentage = val;
           saveSettings();
@@ -649,6 +712,16 @@
         renderTechnicalSkills();
       });
     });
+
+    setupDragAndDrop(container, {
+      itemSelector: '.dynamic-skill-card',
+      onReorder: function (items, previousIndexes) {
+        var next = reorderArrayLikeDom(currentSettings.techSkills, previousIndexes);
+        if (!next) return;
+        currentSettings.techSkills = next;
+        saveSettings();
+      }
+    });
   }
 
   function renderProfessionalSkills() {
@@ -661,10 +734,12 @@
       var card = document.createElement('div');
       card.className = 'dynamic-skill-card';
       card.innerHTML = `
+        <span class="drag-grip" title="Drag to reorder" aria-hidden="true"><i class="fa fa-arrows"></i></span>
+        <span class="order-badge" data-order-badge>#${index + 1}</span>
         <div class="skill-info">
           <div class="skill-title-row">
             <strong>${sk.name}</strong>
-            <span id="prof-val-${index}">${sk.percentage}%</span>
+            <span data-skill-value>${sk.percentage}%</span>
           </div>
           <div class="slider-row" style="margin: 4px 0 0;">
             <input type="range" class="prof-skill-slider" data-index="${index}" min="10" max="100" step="5" value="${sk.percentage}">
@@ -674,6 +749,10 @@
           <i class="fa fa-times" style="color: var(--danger-color);"></i>
         </button>
       `;
+      card.setAttribute('data-index', index);
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('title', 'Drag to reorder, or focus the card and use the arrow keys');
+      card.setAttribute('aria-label', (sk.name || 'Skill') + ' — position ' + (index + 1) + ' of ' + skills.length);
       container.appendChild(card);
     });
 
@@ -681,7 +760,8 @@
       slider.addEventListener('input', function () {
         var idx = parseInt(this.getAttribute('data-index'), 10);
         var val = parseInt(this.value, 10);
-        document.getElementById('prof-val-' + idx).textContent = val + '%';
+        var card = this.closest('.dynamic-skill-card');
+        if (card) card.querySelector('[data-skill-value]').textContent = val + '%';
         if (currentSettings.profSkills[idx]) {
           currentSettings.profSkills[idx].percentage = val;
           saveSettings();
@@ -696,6 +776,16 @@
         saveSettings();
         renderProfessionalSkills();
       });
+    });
+
+    setupDragAndDrop(container, {
+      itemSelector: '.dynamic-skill-card',
+      onReorder: function (items, previousIndexes) {
+        var next = reorderArrayLikeDom(currentSettings.profSkills, previousIndexes);
+        if (!next) return;
+        currentSettings.profSkills = next;
+        saveSettings();
+      }
     });
   }
 
@@ -847,60 +937,189 @@
       cta: 'Call to Action',
       contact: 'Contact'
     };
-    orderArray.forEach(function (id) {
+    orderArray.forEach(function (id, index) {
       var li = document.createElement('li');
       li.setAttribute('data-id', id);
+      li.setAttribute('tabindex', '0');
+      li.setAttribute('title', 'Drag to reorder, or focus the row and use the arrow keys');
       li.draggable = true;
-      li.innerHTML = '<i class="fa fa-arrows"></i> <span>' + (labels[id] || id) + '</span>';
+      li.innerHTML = '<span class="order-item-label"><i class="fa fa-arrows"></i> <span>' + (labels[id] || id) + '</span></span>' +
+        '<span class="order-badge" data-order-badge>#' + (index + 1) + '</span>';
       list.appendChild(li);
     });
-    setupDragAndDrop(list);
+    setupDragAndDrop(list, {
+      itemSelector: 'li',
+      onReorder: function (items) {
+        var newOrder = items.map(function (li) { return li.getAttribute('data-id'); });
+        currentSettings.layout.sectionOrder = newOrder;
+        saveSettings();
+      }
+    });
   }
 
-  function setupDragAndDrop(listEl) {
+  /* Rebuild an array so that it follows the new order of a drag list.
+     previousIndexes holds, for every row at its new position, the index that row
+     had in the array before the move. Returns null when the rows do not line up
+     with the array, so the caller keeps the data untouched. */
+  function reorderArrayLikeDom(array, previousIndexes) {
+    if (!Array.isArray(array) || !previousIndexes) return null;
+    var next = [];
+    previousIndexes.forEach(function (i) {
+      if (i === null || i === undefined || !array[i]) return;
+      if (next.indexOf(array[i]) === -1) next.push(array[i]);
+    });
+    if (next.length !== array.length) return null;
+    return next;
+  }
+
+  /* --------------------------------------------------------------------------
+     Drag & arrange
+     Reusable reordering for the section order, project and skill lists.
+
+     Every row of the list becomes draggable; rows can also be moved with the
+     arrow keys once they have focus, so the lists stay usable without a mouse.
+     The resulting DOM order is handed to onReorder() as (items, previousIndexes)
+     so the caller can persist it in the settings.
+
+     options = { itemSelector: '.dynamic-project-card', onReorder: function() {} }
+     -------------------------------------------------------------------------- */
+  function setupDragAndDrop(listEl, options) {
+    if (!listEl) return;
+    options = options || {};
+    var itemSelector = options.itemSelector || 'li';
+    var onReorder = options.onReorder;
     var draggingItem = null;
 
-    listEl.querySelectorAll('li').forEach(function (item) {
-      item.addEventListener('dragstart', function () {
+    function items() {
+      return Array.prototype.slice.call(listEl.querySelectorAll(itemSelector));
+    }
+
+    // The skills grid lays its cards out in columns, so there the drag follows
+    // the pointer on both axes; plain lists only care about the vertical one.
+    function isMultiColumn(list) {
+      if (list.length < 2) return false;
+      var firstTop = list[0].offsetTop;
+      for (var i = 1; i < list.length; i++) {
+        if (list[i].offsetTop === firstTop) return true;
+      }
+      return false;
+    }
+
+    // Re-number data-index / position badges, then report the order to the caller.
+    function commit() {
+      var list = items();
+      var previousIndexes = list.map(function (item) {
+        var raw = item.getAttribute('data-index');
+        return raw === null ? null : parseInt(raw, 10);
+      });
+      list.forEach(function (item, index) {
+        if (item.hasAttribute('data-index')) item.setAttribute('data-index', index);
+        // Controls inside the row (visibility toggles, sliders, delete buttons)
+        // address the settings array through the same index, so they move with it.
+        Array.prototype.forEach.call(item.querySelectorAll('[data-index]'), function (control) {
+          control.setAttribute('data-index', index);
+        });
+        var badge = item.querySelector('[data-order-badge]');
+        if (badge) badge.textContent = '#' + (index + 1);
+      });
+      if (typeof onReorder === 'function') onReorder(list, previousIndexes);
+    }
+
+    function moveItem(list, from, to) {
+      if (from === to || to < 0 || to >= list.length) return false;
+      listEl.insertBefore(list[from], to > from ? list[to].nextSibling : list[to]);
+      return true;
+    }
+
+    function moveToPointer(x, y) {
+      if (!draggingItem) return;
+      var others = items().filter(function (item) { return item !== draggingItem; });
+      if (!others.length) return;
+
+      var horizontal = isMultiColumn(items());
+      var target = null;
+      var insertBefore = true;
+      var nearest = Infinity;
+
+      others.forEach(function (item) {
+        var box = item.getBoundingClientRect();
+        var cx = box.left + box.width / 2;
+        var cy = box.top + box.height / 2;
+        var dx = horizontal ? x - cx : 0;
+        var dy = y - cy;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < nearest) {
+          nearest = distance;
+          target = item;
+          insertBefore = horizontal ? x < cx : y < cy;
+        }
+      });
+
+      if (target) {
+        listEl.insertBefore(draggingItem, insertBefore ? target : target.nextSibling);
+      }
+    }
+
+    items().forEach(function (item) {
+      item.setAttribute('draggable', 'true');
+
+      item.addEventListener('dragstart', function (e) {
         draggingItem = item;
         item.classList.add('dragging');
+        if (e.dataTransfer) {
+          e.dataTransfer.effectAllowed = 'move';
+          // Firefox refuses to start a drag without a payload
+          e.dataTransfer.setData('text/plain',
+            item.getAttribute('data-id') || item.getAttribute('data-index') || 'item');
+        }
       });
 
       item.addEventListener('dragend', function () {
         item.classList.remove('dragging');
         draggingItem = null;
-        // Collect new order
-        var newOrder = [];
-        listEl.querySelectorAll('li').forEach(function (li) {
-          newOrder.push(li.getAttribute('data-id'));
-        });
-        currentSettings.layout.sectionOrder = newOrder;
-        saveSettings();
+        commit();
+      });
+
+      // Keyboard arranging: the arrows move the focused row. Interactive
+      // children (toggles, sliders, buttons) keep their own arrow behaviour.
+      item.addEventListener('keydown', function (e) {
+        if (e.target !== item) return;
+        var list = items();
+        var horizontal = isMultiColumn(list);
+        var step = 0;
+        if (e.key === 'ArrowUp' || (horizontal && e.key === 'ArrowLeft')) step = -1;
+        if (e.key === 'ArrowDown' || (horizontal && e.key === 'ArrowRight')) step = 1;
+        if (!step) return;
+        var from = list.indexOf(item);
+        if (moveItem(list, from, from + step)) {
+          e.preventDefault();
+          commit();
+        }
       });
     });
 
-    listEl.addEventListener('dragover', function (e) {
+    function onDragOver(e) {
+      if (!draggingItem) return; // a drag that started outside this list
       e.preventDefault();
-      var afterElement = getDragAfterElement(listEl, e.clientY);
-      if (!afterElement) {
-        listEl.appendChild(draggingItem);
-      } else {
-        listEl.insertBefore(draggingItem, afterElement);
-      }
-    });
-  }
+      if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
+      moveToPointer(e.clientX, e.clientY);
+    }
 
-  function getDragAfterElement(container, y) {
-    var draggableElements = Array.from(container.querySelectorAll('li:not(.dragging)'));
-    return draggableElements.reduce(function (closest, child) {
-      var box = child.getBoundingClientRect();
-      var offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
+    function onDrop(e) {
+      if (draggingItem) e.preventDefault();
+    }
+
+    // The list element lives across re-renders of the admin panel, so drop the
+    // handlers installed by a previous setupDragAndDrop() call before adding new
+    // ones — otherwise every re-render would stack another pair on the same list.
+    if (typeof listEl.dndCleanup === 'function') listEl.dndCleanup();
+    listEl.dndCleanup = function () {
+      listEl.removeEventListener('dragover', onDragOver);
+      listEl.removeEventListener('drop', onDrop);
+    };
+
+    listEl.addEventListener('dragover', onDragOver);
+    listEl.addEventListener('drop', onDrop);
   }
 
   // ==========================================================================

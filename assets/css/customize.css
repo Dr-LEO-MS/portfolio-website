@@ -600,6 +600,79 @@ label {
   cursor: grabbing;
 }
 
+/* --------------------------------------------------------------------------
+   Drag & arrange
+   The section order, project and skill lists are all reorderable: drag a row,
+   or focus it and use the arrow keys. Wiring lives in setupDragAndDrop()
+   (assets/js/customize.js); the position badge is refreshed after every move.
+   -------------------------------------------------------------------------- */
+.section-order-list li,
+.dynamic-project-card,
+.dynamic-skill-card {
+  cursor: grab;
+}
+
+.section-order-list li:active,
+.dynamic-project-card:active,
+.dynamic-skill-card:active {
+  cursor: grabbing;
+}
+
+.section-order-list li:focus-visible,
+.dynamic-project-card:focus-visible,
+.dynamic-skill-card:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* the row currently being dragged */
+.dragging {
+  opacity: 0.55;
+  background: var(--bg-hover);
+  border-color: var(--accent-color) !important;
+}
+
+/* position badge (#1, #2, …) */
+.order-badge {
+  flex-shrink: 0;
+  min-width: 30px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 0 8px;
+}
+
+/* grip shown on the project / skill cards */
+.drag-grip {
+  flex-shrink: 0;
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  color: var(--text-dim);
+  border-radius: var(--radius-sm);
+  cursor: grab;
+  transition: var(--transition);
+}
+
+.drag-grip:hover {
+  color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* keeps the grip icon and the section label together on one side */
+.order-item-label {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
 /* Header with Action Buttons */
 .section-header-row {
   display: flex;
@@ -882,17 +955,10 @@ label {
 .tag-badge .btn-del-tag:hover {
   color: var(--danger-color);
 }
-  cursor: grabbing;
-}
 
 .section-order-list li i.fa-arrows {
   color: var(--text-dim);
   margin-right: 10px;
-}
-
-.section-order-list li.dragging {
-  opacity: 0.5;
-  background: var(--bg-hover);
 }
 
 .project-toggle-list li label {
